@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -44,8 +44,7 @@
               <video src="assets/site-desktop.mp4" poster="assets/site-desktop-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
             </div>
           </div>
-          <div class="laptop__hinge"></div>
-          <div class="laptop__deck"><span class="laptop__keys"></span><span class="laptop__pad"></span></div>
+          <div class="laptop__base"><span></span></div>
         </div>
         <div class="phone phone--hero" data-parallax="-0.1">
           <div class="phone__notch"></div>
@@ -101,7 +100,7 @@
           <h3 class="feat__title">Our collections</h3>
           <p class="feat__why">Baskets, bouquets and plants in one place, switched with tabs. Customers compare without leaving the home page, and sale and bestseller badges guide the choice.</p>
         </header>
-        <div class="browser browser--big reveal">
+        <div class="browser browser--big wipe">
           <div class="browser__bar"><i></i><i></i><i></i></div>
           <img src="assets/sec-collections.jpg" alt="Our collections section with Basket, Bouquets and Plants tabs" loading="lazy">
         </div>
@@ -115,7 +114,14 @@
         </header>
         <div class="browser browser--big reveal">
           <div class="browser__bar"><i></i><i></i><i></i></div>
-          <img src="assets/sec-same-day.jpg" alt="Same-day delivery banner with countdown timer" loading="lazy">
+          <div class="timer-wrap">
+            <img src="assets/sec-same-day.jpg" alt="Same-day delivery banner with countdown timer" loading="lazy">
+            <div class="timer" aria-live="off">
+              <span class="timer__label">Live · Yerevan time</span>
+              <b class="timer__clock" data-timer>00:00:00</b>
+              <span class="timer__note" data-timer-note>left to order for delivery today</span>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -125,9 +131,12 @@
           <h3 class="feat__title">The product page</h3>
           <p class="feat__why">One clear call to action, a delivery note in the buy box, and "What's inside", "Size" and "Care" rows filled from metafields. Every doubt is answered before checkout.</p>
         </header>
-        <div class="browser browser--big reveal">
-          <div class="browser__bar"><i></i><i></i><i></i></div>
-          <video src="assets/product-desktop.mp4" muted loop playsinline preload="none" aria-label="Product page scrolling"></video>
+        <div class="feat__media reveal">
+          <div class="browser browser--big">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <video src="assets/product-desktop.mp4" muted loop playsinline preload="none" aria-label="Product page scrolling"></video>
+          </div>
+          <div class="phone phone--float" data-parallax="-0.12"><div class="phone__notch"></div><img src="assets/mob-product.jpg" alt="The same product page on a phone" loading="lazy"></div>
         </div>
       </article>
 
@@ -137,9 +146,12 @@
           <h3 class="feat__title">Welcome popup</h3>
           <p class="feat__why">10% off the first order in exchange for an email. It grows a list the shop owns, for launches, holidays and repeat orders.</p>
         </header>
-        <div class="browser browser--big reveal">
+        <div class="browser browser--big popup-demo">
           <div class="browser__bar"><i></i><i></i><i></i></div>
-          <img src="assets/lang-en.jpg" alt="Welcome popup with a 10% discount" loading="lazy">
+          <div class="popup-demo__stage">
+            <img class="popup-demo__site" src="assets/sec-hero.jpg" alt="" loading="lazy">
+            <img class="popup-demo__card" src="assets/popup.jpg" alt="Welcome popup offering 10% off the first order" loading="lazy">
+          </div>
         </div>
       </article>
     </section>
@@ -150,7 +162,7 @@
         <p class="eyebrow reveal">Mobile-first</p>
         <h2 class="h2 reveal">Most flowers are ordered <em>on a phone.</em></h2>
       </div>
-      <div class="mobiles">
+      <div class="mobiles" data-drift>
         <div class="phone" data-parallax="0.06"><div class="phone__notch"></div><img src="assets/mob-product.jpg" alt="Product page on mobile" loading="lazy"></div>
         <div class="phone" data-parallax="-0.06"><div class="phone__notch"></div><img src="assets/mob-collection.jpg" alt="Collection on mobile" loading="lazy"></div>
         <div class="phone" data-parallax="0.08"><div class="phone__notch"></div><img src="assets/mob-faq.jpg" alt="FAQ on mobile" loading="lazy"></div>
@@ -227,6 +239,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

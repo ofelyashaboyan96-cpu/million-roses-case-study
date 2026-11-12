@@ -30,7 +30,25 @@ const LINKS = {
       revealObs.unobserve(e.target);
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
+  document.querySelectorAll(".reveal, .wipe, .popup-demo").forEach((el) => revealObs.observe(el));
+
+  /* Live same-day countdown: orders until 16:00 Yerevan time (UTC+4) */
+  const clockEl = document.querySelector("[data-timer]");
+  const noteEl = document.querySelector("[data-timer-note]");
+  if (clockEl) {
+    const pad = (n) => String(n).padStart(2, "0");
+    const tick = () => {
+      const now = new Date();
+      const yv = new Date(now.getTime() + (now.getTimezoneOffset() + 240) * 60000);
+      const cut = new Date(yv); cut.setHours(16, 0, 0, 0);
+      const tomorrow = yv >= cut;
+      if (tomorrow) cut.setDate(cut.getDate() + 1);
+      let s = Math.floor((cut - yv) / 1000);
+      clockEl.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}`;
+      if (noteEl) noteEl.textContent = tomorrow ? "left to order for tomorrow's delivery" : "left to order for delivery today";
+    };
+    tick(); setInterval(tick, 1000);
+  }
 
   // ---------- Count-up numbers ----------
   const countObs = new IntersectionObserver((entries) => {
@@ -74,6 +92,7 @@ const LINKS = {
 
   /* =========================================================
      2. THE BOUQUET (drawn with code, assembled by scrolling)
+     Everything is generated here so it looks hand-drawn and organic.
      ========================================================= */
   const svg = document.querySelector(".bouquet");
   const NS = "http://www.w3.org/2000/svg";
@@ -83,75 +102,121 @@ const LINKS = {
     (parent || svg).appendChild(el);
     return el;
   };
+  // Small fixed "random" so the bouquet looks the same on every visit
+  let seed = 7;
+  const rnd = (a = 0, b = 1) => { seed = (seed * 9301 + 49297) % 233280; return a + (seed / 233280) * (b - a); };
 
-  const TIE = { x: 200, y: 405 };                       // where the ribbon ties the stems
-  const spikes = [[118, 70], [172, 30], [236, 46], [292, 92], [205, 120]]; // delphinium tops
-  const peonies = [[150, 255, 34], [222, 238, 40], [276, 285, 30], [190, 312, 32], [118, 315, 26]]; // x, y, size
+  const TIE = { x: 200, y: 400 };
+  // Delphinium spikes (tall, curved) and peony heads (round, at the front)
+  const spikes = [[112, 62, -14], [168, 24, -5], [238, 36, 8], [296, 84, 16], [204, 104, 2]];
+  const peonies = [[150, 252, 36], [226, 236, 42], [280, 288, 30], [188, 312, 34], [116, 314, 27]];
+  const sprigs = [[96, 196], [312, 196], [258, 160], [140, 150]];
   const parts = { stems: [], leaves: [], buds: [], peonies: [], ribbon: [] };
 
-  if (svg) {
-    const gStems = make("g", {}), gLeaves = make("g", {}), gBuds = make("g", {}), gPeony = make("g", {}), gRibbon = make("g", {});
+  // An organic outline: a circle whose radius wobbles (used for peony petals)
+  const blob = (cx, cy, r, wob, turns, phase) => {
+    let d = "";
+    for (let i = 0; i <= 64; i++) {
+      const a = (i / 64) * Math.PI * 2;
+      const rr = r * (1 + wob * Math.sin(turns * a + phase) + wob * .5 * Math.sin((turns * 2 + 1) * a + phase * 1.7));
+      d += `${i ? "L" : "M"}${(cx + Math.cos(a) * rr).toFixed(1)} ${(cy + Math.sin(a) * rr).toFixed(1)}`;
+    }
+    return d + "Z";
+  };
 
-    // Stems: from the bottom, through the tie point, up to each flower
-    [...spikes, ...peonies].forEach(([x, y], n) => {
-      const bx = 182 + (n % 6) * 7;                       // spread the cut ends a little
-      const d = `M${bx} 548 C ${bx} 470 ${TIE.x} 430 ${TIE.x} ${TIE.y} S ${x} ${y + 90} ${x} ${y}`;
-      const path = make("path", { d, class: "stem" }, gStems);
+  // A leaf with a pointed tip and a centre vein, drawn from (0,0) upward
+  const leafPath = (len, wid) =>
+    `M0 0 C ${wid} ${-len * .25} ${wid * .8} ${-len * .7} 0 ${-len} C ${-wid * .9} ${-len * .68} ${-wid} ${-len * .28} 0 0 Z`;
+
+  if (svg) {
+    const sway = make("g", { class: "sway" });
+    const gStems = make("g", {}, sway), gLeaves = make("g", {}, sway), gSprig = make("g", {}, sway),
+          gBuds = make("g", {}, sway), gPeony = make("g", {}, sway), gRibbon = make("g", {}, sway);
+    const greens = ["#5f7552", "#6f8460", "#7b8f69"];
+
+    const addStem = ([x, y], n, parent) => {
+      const bx = 184 + (n % 7) * 5.5;
+      const bend = rnd(-18, 18);
+      const d = `M${bx} 548 C ${bx + rnd(-4, 4)} 480 ${TIE.x} 430 ${TIE.x} ${TIE.y} C ${TIE.x + (x - TIE.x) * .3 + bend} ${TIE.y - 90} ${x - bend * .4} ${y + 120} ${x} ${y}`;
+      const path = make("path", { d, class: "stem", stroke: greens[n % 3], "stroke-width": rnd(1.6, 2.6) }, parent || gStems);
       const len = path.getTotalLength();
       path.style.strokeDasharray = len;
       path.style.strokeDashoffset = len;
       parts.stems.push({ el: path, len });
-    });
+      return { path, len };
+    };
 
-    // Leaves: grow out of the bouquet around the tie point
-    const leafShape = "M0 0 Q 16 -28 0 -66 Q -16 -28 0 0 Z";
-    [[-58, 168, 360, 1], [-30, 176, 330, .9], [35, 230, 335, .95], [62, 240, 368, 1.05], [-80, 160, 392, .8], [82, 244, 396, .8], [-12, 196, 300, .7], [18, 214, 296, .75]]
-      .forEach(([rot, x, y, s]) => {
-        const leaf = make("path", { d: leafShape, class: "leaf" }, gLeaves);
-        leaf.dataset.base = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
-        leaf.dataset.s = s;
-        parts.leaves.push(leaf);
-      });
+    // Leaves grow along each stem, following its direction
+    const addLeaf = (path, len, at, side, size) => {
+      const p = path.getPointAtLength(len * at), q = path.getPointAtLength(len * at - 2);
+      const ang = (Math.atan2(p.y - q.y, p.x - q.x) * 180) / Math.PI + 90 + side * rnd(28, 48);
+      const g = make("g", { class: "leafg" }, gLeaves);
+      make("path", { d: leafPath(size, size * .32), class: "leaf" }, g);
+      make("path", { d: `M0 0 Q ${side * 2} ${-size * .5} 0 ${-size * .92}`, class: "vein" }, g);
+      g.dataset.base = `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px) rotate(${ang.toFixed(1)}deg)`;
+      parts.leaves.push(g);
+    };
 
-    // Delphinium: columns of small buds along each spike top
-    spikes.forEach(([x, y], n) => {
-      for (let k = 0; k < 9; k++) {
-        const r = 7.5 - k * .45;
+    // Delphinium: star-shaped florets climbing the top of the stem
+    spikes.forEach((s, n) => {
+      const { path, len } = addStem(s, n);
+      addLeaf(path, len, .6, n % 2 ? 1 : -1, rnd(40, 58));
+      const lilac = ["#B7A2D2", "#CDBDE3", "#A38BC2", "#D9CDEA"];
+      for (let k = 0; k < 11; k++) {
+        const t = .64 + k * .033;
+        const p = path.getPointAtLength(len * Math.min(t, 1));
         const side = k % 2 ? 1 : -1;
-        const bud = make("circle", { cx: x + side * (4 + (n % 2) * 2), cy: y + 92 - k * 11, r, class: "bud" }, gBuds);
-        bud.dataset.order = k;
-        parts.buds.push(bud);
+        const size = 8.5 - k * .55;
+        const cx = p.x + side * rnd(2, 6), cy = p.y;
+        const g = make("g", { class: "bud" }, gBuds);
+        if (k < 8) {
+          for (let i = 0; i < 5; i++) {
+            const a = (i / 5) * Math.PI * 2 + rnd(0, 1);
+            make("ellipse", { cx: cx + Math.cos(a) * size * .45, cy: cy + Math.sin(a) * size * .45, rx: size * .45, ry: size * .32,
+              transform: `rotate(${(a * 180) / Math.PI} ${cx + Math.cos(a) * size * .45} ${cy + Math.sin(a) * size * .45})`, fill: lilac[(k + i) % 4] }, g);
+          }
+          make("circle", { cx, cy, r: size * .18, fill: "#F3EFE6" }, g);
+        } else {
+          make("ellipse", { cx, cy, rx: size * .35, ry: size * .55, fill: "#C7B4DD" }, g); // closed buds at the tip
+        }
+        g.dataset.order = k;
+        parts.buds.push(g);
       }
     });
 
-    // Peonies: layered petals that open
-    peonies.forEach(([x, y, s]) => {
+    // Peonies: three ruffled layers, darker towards the centre
+    peonies.forEach((pk, n) => {
+      const { path, len } = addStem(pk, n + spikes.length);
+      addLeaf(path, len, .5, n % 2 ? -1 : 1, rnd(46, 64));
+      addLeaf(path, len, .7, n % 2 ? 1 : -1, rnd(34, 46));
+      const [x, y, s] = pk;
       const g = make("g", { class: "peony" }, gPeony);
-      for (let ring = 0; ring < 3; ring++) {
-        const count = 7 - ring * 2, rr = s * (1 - ring * .28);
-        for (let k = 0; k < count; k++) {
-          const a = (Math.PI * 2 * k) / count + ring * .4;
-          make("ellipse", {
-            cx: x + Math.cos(a) * rr * .42, cy: y + Math.sin(a) * rr * .42,
-            rx: rr * .55, ry: rr * .42,
-            transform: `rotate(${(a * 180) / Math.PI} ${x + Math.cos(a) * rr * .42} ${y + Math.sin(a) * rr * .42})`,
-            class: "petal"
-          }, g);
-        }
-      }
-      make("circle", { cx: x, cy: y, r: s * .14, fill: "#B8975A", opacity: .7 }, g);
+      make("path", { d: blob(x, y, s, .09, 7, rnd(0, 6)), fill: "#F4D3D3", stroke: "#D9A5AB", "stroke-width": .8 }, g);
+      make("path", { d: blob(x + rnd(-2, 2), y + rnd(-2, 2), s * .74, .11, 6, rnd(0, 6)), fill: "#EEBDC2", stroke: "#D08F98", "stroke-width": .8 }, g);
+      make("path", { d: blob(x, y, s * .46, .14, 5, rnd(0, 6)), fill: "#E5A2AB", stroke: "#C47D88", "stroke-width": .8 }, g);
+      make("path", { d: blob(x, y, s * .2, .2, 4, rnd(0, 6)), fill: "#D98D99" }, g);
       parts.peonies.push(g);
     });
 
-    // Ribbon: a bow and two tails at the tie point
-    const bow = [
-      `M${TIE.x} ${TIE.y} C 165 380 150 420 ${TIE.x} ${TIE.y + 2}`,
-      `M${TIE.x} ${TIE.y} C 235 380 250 420 ${TIE.x} ${TIE.y + 2}`,
-      `M${TIE.x} ${TIE.y + 2} C 192 440 180 470 172 500`,
-      `M${TIE.x} ${TIE.y + 2} C 208 440 222 468 232 502`,
-      `M178 ${TIE.y - 4} L 222 ${TIE.y - 4}`
-    ];
-    bow.forEach((d) => {
+    // Gypsophila: airy white sprigs that appear with the peonies
+    sprigs.forEach(([x, y], n) => {
+      const { path, len } = addStem([x, y], n + 3);
+      path.setAttribute("stroke-width", 1.1);
+      const g = make("g", { class: "peony" }, gSprig);
+      for (let k = 0; k < 9; k++) {
+        make("circle", { cx: x + rnd(-14, 14), cy: y + rnd(-10, 12), r: rnd(2, 3.6), fill: "#FFFFFF", stroke: "#D8CFC0", "stroke-width": .7 }, g);
+      }
+      parts.peonies.push(g);
+    });
+
+    // Ribbon: a soft bow and two tails at the tie point
+    [
+      `M${TIE.x} ${TIE.y} C 168 378 146 410 ${TIE.x} ${TIE.y + 3}`,
+      `M${TIE.x} ${TIE.y} C 232 378 254 410 ${TIE.x} ${TIE.y + 3}`,
+      `M${TIE.x} ${TIE.y + 3} C 194 438 178 468 170 504`,
+      `M${TIE.x} ${TIE.y + 3} C 208 438 224 466 236 506`,
+      `M180 ${TIE.y - 3} Q 200 ${TIE.y + 4} 220 ${TIE.y - 3}`
+    ].forEach((d) => {
       const path = make("path", { d, class: "ribbon" }, gRibbon);
       const len = path.getTotalLength();
       path.style.strokeDasharray = len;
@@ -170,15 +235,15 @@ const LINKS = {
     if (!svg) return;
     parts.stems.forEach(({ el, len }, n) => { el.style.strokeDashoffset = len * (1 - range(p, .02 + n * .008, .15 + n * .006)); });
     parts.leaves.forEach((leaf, n) => {
-      const t = range(p, .17 + n * .012, .27 + n * .012);
-      leaf.style.transform = `${leaf.dataset.base} scale(${t * leaf.dataset.s})`;
+      const t = range(p, .17 + (n % 12) * .01, .27 + (n % 12) * .01);
+      leaf.style.transform = `${leaf.dataset.base} scale(${t})`;
     });
     parts.buds.forEach((bud) => {
       const t = range(p, .33 + bud.dataset.order * .012, .38 + bud.dataset.order * .012);
       bud.style.transform = `scale(${t})`;
     });
     parts.peonies.forEach((g, n) => {
-      const t = range(p, .5 + n * .02, .6 + n * .02);
+      const t = range(p, .5 + (n % 9) * .015, .6 + (n % 9) * .015);
       g.style.transform = `scale(${t}) rotate(${(1 - t) * -40}deg)`;
     });
     parts.ribbon.forEach(({ el, len }, n) => { el.style.strokeDashoffset = len * (1 - range(p, .67 + n * .015, .75 + n * .015)); });
@@ -200,6 +265,7 @@ const LINKS = {
      ========================================================= */
   const laptop = document.querySelector("[data-tilt]");
   const drifters = document.querySelectorAll("[data-parallax]");
+  const strip = document.querySelector("[data-drift]");
   let ticking = false;
 
   const update = () => {
@@ -223,6 +289,13 @@ const LINKS = {
       offset = Math.max(-80, Math.min(80, offset));
       el.style.translate = `0 ${offset.toFixed(1)}px`;
     });
+    if (strip && window.innerWidth > 760) {
+      const r = strip.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < vh) {
+        const t = clamp((vh - r.top) / (vh + r.height));
+        strip.style.translate = `${(60 - 120 * t).toFixed(1)}px 0`;
+      }
+    }
     ticking = false;
   };
 
