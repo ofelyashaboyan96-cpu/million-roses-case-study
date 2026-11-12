@@ -11,7 +11,7 @@ An animated, responsive portfolio page presenting **Million Roses**, a trilingua
 |---|---|
 | `index.html` | Page structure and all text |
 | `styles.css` | Design: store palette, typography, layout, responsive rules |
-| `script.js` | Links (edit at the top), scroll reveal, count-up stats, parallax, laptop tilt |
+| `script.js` | Links (edit at the top), scroll-driven bouquet story (SVG drawn in code), reveals, count-up stats, laptop tilt |
 | `assets/` | Screen recordings and images of the real store |
 
 ## Built with
