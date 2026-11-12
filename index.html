@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
     <a class="topbar__logo" href="#top">M<span>R</span></a>
     <nav class="topbar__nav">
       <a href="#story">Story</a>
-      <a href="#features">Features</a>
+      <a href="#mobile">Mobile</a>
       <a href="#design">Design</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -60,104 +60,46 @@
       </ul>
     </section>
 
-    <!-- ============ 2. SCROLL STORY: a bouquet assembles ============ -->
+    <!-- ============ 2. SCROLL STORY: the store and the bouquet grow together ============ -->
     <section class="story" id="story">
       <div class="story__sticky">
         <div class="story__text">
-          <p class="eyebrow">The brand story · scroll</p>
+          <p class="eyebrow">Built in layers · scroll</p>
           <div class="story__steps">
-            <div class="story__step is-active"><span>01</span><h2>It starts<br>with a <em>stem.</em></h2><p>Fresh stems arrive every morning in Yerevan.</p></div>
-            <div class="story__step"><span>02</span><h2>Greenery<br>gives <em>shape.</em></h2><p>The florist builds the structure first.</p></div>
-            <div class="story__step"><span>03</span><h2>Height<br>and <em>air.</em></h2><p>Delphinium spikes add movement and lightness.</p></div>
-            <div class="story__step"><span>04</span><h2>Then the<br><em>peonies.</em></h2><p>Soft, full blooms at the heart of the bouquet.</p></div>
-            <div class="story__step"><span>05</span><h2>Tied<br>by <em>hand.</em></h2><p>A silk ribbon and a care card, ready by 16:00.</p></div>
-            <div class="story__step"><span>06</span><h2>Delivered<br><em>today.</em></h2><p>Blush Peony &amp; Delphinium · 21,000 AMD</p></div>
+            <div class="story__step is-active"><span>01 · First impression</span><h2>It starts<br>with a <em>stem.</em></h2><p>A calm, premium storefront that says "flowers" before a single word is read.</p></div>
+            <div class="story__step"><span>02 · Sales</span><h2>Collections<br>give it <em>shape.</em></h2><p>Baskets, bouquets and plants in tabs, so customers compare without leaving the home page.</p></div>
+            <div class="story__step"><span>03 · Brand</span><h2>Hand-picked,<br><em>made to bloom.</em></h2><p>The About us page shows the people and the craft that justify a premium price.</p></div>
+            <div class="story__step"><span>04 · Trust</span><h2>The product<br><em>opens up.</em></h2><p>One clear button, and "What's inside", "Size" and "Care" answered before checkout.</p></div>
+            <div class="story__step"><span>05 · Conversion</span><h2>Tied by 16:00,<br><em>delivered today.</em></h2><p>A live same-day countdown answers the gift buyer's first question: "will it arrive today?"</p></div>
+            <div class="story__step"><span>06 · Marketing</span><h2>A gift tag that<br><em>brings them back.</em></h2><p>10% off the first order for an email, growing a list the shop owns.</p></div>
+            <div class="story__step"><span>07 · The result</span><h2>Ready to<br><em>order.</em></h2><p>Blush Peony &amp; Delphinium · 21,000 AMD, a real bouquet from the store.</p></div>
           </div>
-          <p class="story__why"><b>Why it's on the site:</b> the craft behind the bouquet justifies a premium price.</p>
         </div>
 
         <div class="story__art">
-          <svg class="bouquet" viewBox="0 0 400 560" role="img" aria-label="A bouquet drawing itself as you scroll"></svg>
+          <div class="story__screens" aria-hidden="true">
+            <figure class="screen is-on"><div class="browser__bar"><i></i><i></i><i></i><b>Home</b></div><img src="assets/sec-hero.jpg" alt=""></figure>
+            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Collections</b></div><img src="assets/sec-collections.jpg" alt="" loading="lazy"></figure>
+            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>About us</b></div><img src="assets/page-about.jpg" alt="" loading="lazy"></figure>
+            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Product page</b></div><img src="assets/page-product.jpg" alt="" loading="lazy"></figure>
+            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Same-day delivery</b></div><img src="assets/sec-same-day.jpg" alt="" loading="lazy">
+              <div class="timer" aria-live="off"><span class="timer__label">Live · Yerevan time</span><b class="timer__clock" data-timer>00:00:00</b><span class="timer__note" data-timer-note>left to order for delivery today</span></div>
+            </figure>
+            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Welcome popup</b></div><img src="assets/popup.jpg" alt="" loading="lazy"></figure>
+          </div>
+          <svg class="bouquet" viewBox="0 0 400 560" role="img" aria-label="A bouquet that gains a new layer for each part of the store"></svg>
           <figure class="story__photo">
             <img src="assets/product-blush.jpg" alt="Blush Peony and Delphinium bouquet, a real Million Roses product" loading="lazy">
           </figure>
         </div>
 
+        <ol class="story__dots" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
         <div class="story__progress"><i></i></div>
       </div>
     </section>
 
-    <!-- ============ 3. FEATURES: four sections, four jobs ============ -->
-    <section class="section" id="features">
-      <div class="wrap">
-        <p class="eyebrow reveal">What I built</p>
-        <h2 class="h2 reveal">Four sections. <em>Four jobs.</em></h2>
-      </div>
-
-      <article class="feat wrap">
-        <header class="feat__head reveal">
-          <span class="feat__role">01 · Sales</span>
-          <h3 class="feat__title">Our collections</h3>
-          <p class="feat__why">Baskets, bouquets and plants in one place, switched with tabs. Customers compare without leaving the home page, and sale and bestseller badges guide the choice.</p>
-        </header>
-        <div class="browser browser--big wipe">
-          <div class="browser__bar"><i></i><i></i><i></i></div>
-          <img src="assets/sec-collections.jpg" alt="Our collections section with Basket, Bouquets and Plants tabs" loading="lazy">
-        </div>
-      </article>
-
-      <article class="feat wrap">
-        <header class="feat__head reveal">
-          <span class="feat__role">02 · Conversion</span>
-          <h3 class="feat__title">Same-day delivery</h3>
-          <p class="feat__why">A live countdown to the 16:00 cutoff answers the gift buyer's first question, "will it arrive today?", and turns a visit into an order.</p>
-        </header>
-        <div class="browser browser--big reveal">
-          <div class="browser__bar"><i></i><i></i><i></i></div>
-          <div class="timer-wrap">
-            <img src="assets/sec-same-day.jpg" alt="Same-day delivery banner with countdown timer" loading="lazy">
-            <div class="timer" aria-live="off">
-              <span class="timer__label">Live · Yerevan time</span>
-              <b class="timer__clock" data-timer>00:00:00</b>
-              <span class="timer__note" data-timer-note>left to order for delivery today</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="feat wrap">
-        <header class="feat__head reveal">
-          <span class="feat__role">03 · Trust</span>
-          <h3 class="feat__title">The product page</h3>
-          <p class="feat__why">One clear call to action, a delivery note in the buy box, and "What's inside", "Size" and "Care" rows filled from metafields. Every doubt is answered before checkout.</p>
-        </header>
-        <div class="feat__media reveal">
-          <div class="browser browser--big">
-            <div class="browser__bar"><i></i><i></i><i></i></div>
-            <video src="assets/product-desktop.mp4" muted loop playsinline preload="none" aria-label="Product page scrolling"></video>
-          </div>
-          <div class="phone phone--float" data-parallax="-0.12"><div class="phone__notch"></div><img src="assets/mob-product.jpg" alt="The same product page on a phone" loading="lazy"></div>
-        </div>
-      </article>
-
-      <article class="feat wrap">
-        <header class="feat__head reveal">
-          <span class="feat__role">04 · Marketing</span>
-          <h3 class="feat__title">Welcome popup</h3>
-          <p class="feat__why">10% off the first order in exchange for an email. It grows a list the shop owns, for launches, holidays and repeat orders.</p>
-        </header>
-        <div class="browser browser--big popup-demo">
-          <div class="browser__bar"><i></i><i></i><i></i></div>
-          <div class="popup-demo__stage">
-            <img class="popup-demo__site" src="assets/sec-hero.jpg" alt="" loading="lazy">
-            <img class="popup-demo__card" src="assets/popup.jpg" alt="Welcome popup offering 10% off the first order" loading="lazy">
-          </div>
-        </div>
-      </article>
-    </section>
-
     <!-- ============ 4. MOBILE ============ -->
-    <section class="section section--tint">
+    <section class="section section--tint" id="mobile">
       <div class="wrap">
         <p class="eyebrow reveal">Mobile-first</p>
         <h2 class="h2 reveal">Most flowers are ordered <em>on a phone.</em></h2>
@@ -239,6 +181,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
