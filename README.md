@@ -2,7 +2,7 @@
 
 An animated, responsive portfolio page presenting **Million Roses**, a trilingual (Armenian, Russian, English) Shopify flower boutique I designed and built.
 
-**Live case study:** https://YOUR-GITHUB-USERNAME.github.io/million-roses-case-study/
+**Live case study:** https://ofelyashaboyan96-cpu.github.io/million-roses-case-study/
 **Live store:** https://ofelya-shaboyan-szkc1aey.myshopify.com/en-am
 
 ## What's inside
