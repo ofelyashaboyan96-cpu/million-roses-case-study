@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Million Roses · Shopify Case Study</title>
+  <meta name="description" content="Case study: designing and building Million Roses, a trilingual Shopify flower boutique in Yerevan, by Ofelya Shaboyan.">
+  <!-- Link preview on LinkedIn / Upwork -->
+  <meta property="og:title" content="Million Roses · Shopify Case Study">
+  <meta property="og:description" content="A trilingual Shopify flower boutique: custom Liquid sections, design system and apps.">
+  <meta property="og:image" content="assets/site-desktop-poster.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <a class="topbar__logo" href="#top">M<span>R</span></a>
+    <nav class="topbar__nav">
+      <a href="#overview">Overview</a>
+      <a href="#design">Design</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--small" data-link="store" href="#" target="_blank" rel="noopener">Live store</a>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow reveal">Shopify case study · 2026</p>
+        <h1 class="hero__title">
+          <span class="line"><span>Million</span></span>
+          <span class="line"><span><em>Roses.</em></span></span>
+        </h1>
+        <p class="hero__lead reveal">An elegant, trilingual online flower boutique for Yerevan, designed and built on Shopify, from colour palette to custom Liquid code.</p>
+        <div class="hero__actions reveal">
+          <a class="btn" data-link="store" href="#" target="_blank" rel="noopener">Visit the live store</a>
+          <a class="btn btn--ghost" href="#overview">Read the case study</a>
+        </div>
+      </div>
+
+      <div class="hero__stage" aria-hidden="true">
+        <!-- Laptop mockup: the real site scrolling inside -->
+        <div class="laptop" data-tilt>
+          <div class="laptop__screen">
+            <div class="laptop__bar"><i></i><i></i><i></i><span>Million Roses · home page</span></div>
+            <video class="laptop__video" src="assets/site-desktop.mp4" poster="assets/site-desktop-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="laptop__base"></div>
+        </div>
+        <!-- Phone mockup -->
+        <div class="phone phone--hero" data-parallax="-0.12">
+          <div class="phone__notch"></div>
+          <video src="assets/site-mobile.mp4" poster="assets/site-mobile-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        <img class="hero__calla" src="assets/cutout-calla.png" alt="" data-parallax="0.18">
+      </div>
+    </section>
+
+    <!-- ============ RUNNING STRIP ============ -->
+    <div class="strip" aria-hidden="true">
+      <div class="strip__track">
+        <span>Shopify</span><b>✦</b><span>Liquid</span><b>✦</b><span>Responsive design</span><b>✦</b><span>Armenian · Russian · English</span><b>✦</b><span>UX &amp; conversion</span><b>✦</b>
+        <span>Shopify</span><b>✦</b><span>Liquid</span><b>✦</b><span>Responsive design</span><b>✦</b><span>Armenian · Russian · English</span><b>✦</b><span>UX &amp; conversion</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ 2. OVERVIEW ============ -->
+    <section class="section" id="overview">
+      <div class="wrap grid-2">
+        <div>
+          <p class="eyebrow reveal">01 · Overview</p>
+          <h2 class="h2 reveal">A boutique feeling, <em>online.</em></h2>
+        </div>
+        <div class="reveal">
+          <p class="body">Million Roses is a flower boutique concept for Yerevan. The goal was a store that feels as calm and premium as a real florist's studio, while making ordering a same-day bouquet fast on any phone.</p>
+          <dl class="facts">
+            <div><dt>Role</dt><dd>Design &amp; development</dd></div>
+            <div><dt>Platform</dt><dd>Shopify (Dawn-based theme)</dd></div>
+            <div><dt>Tools</dt><dd>Liquid, HTML, CSS, JavaScript</dd></div>
+            <div><dt>Year</dt><dd>2026</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="wrap stats">
+        <div class="stat reveal"><span class="stat__num" data-count="15">0</span><span class="stat__plus">+</span><p>custom Liquid sections</p></div>
+        <div class="stat reveal"><span class="stat__num" data-count="3">0</span><p>languages: hy · ru · en</p></div>
+        <div class="stat reveal"><span class="stat__num" data-count="3">0</span><p>integrated Shopify apps</p></div>
+        <div class="stat reveal"><span class="stat__num" data-count="100">0</span><span class="stat__plus">%</span><p>responsive, mobile-first</p></div>
+      </div>
+    </section>
+
+    <!-- ============ 3. CHALLENGE ============ -->
+    <section class="section section--green">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--light reveal">02 · The challenge</p>
+        <h2 class="h2 h2--light reveal">Flowers are bought <em>with emotion,</em><br>and in a hurry.</h2>
+        <div class="cards">
+          <article class="card reveal">
+            <span class="card__num">i</span>
+            <h3>Trust at first glance</h3>
+            <p>Buyers can't smell or touch the bouquet, so photography, calm colours and honest details must do the work.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__num">ii</span>
+            <h3>Speed on mobile</h3>
+            <p>Most gifts are ordered on a phone, often the same day. The path from home page to checkout had to be short and clear.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__num">iii</span>
+            <h3>Three languages</h3>
+            <p>Customers in Armenia read Armenian, Russian or English, so every custom section had to translate cleanly.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. DESIGN SYSTEM ============ -->
+    <section class="section" id="design">
+      <div class="wrap">
+        <p class="eyebrow reveal">03 · Design system</p>
+        <h2 class="h2 reveal">Four colours, <em>one mood.</em></h2>
+        <p class="body body--narrow reveal">A palette taken from the flowers themselves: deep stem green for actions, warm cream for calm, sage for softness and gold reserved for prices and small details.</p>
+
+        <div class="palette">
+          <div class="swatch reveal" style="--c:#1F3A2B; --t:#F6F2E9"><span>Deep green</span><code>#1F3A2B</code><small>Text &amp; main buttons</small></div>
+          <div class="swatch reveal" style="--c:#F6F2E9; --t:#1F3A2B"><span>Cream</span><code>#F6F2E9</code><small>Backgrounds</small></div>
+          <div class="swatch reveal" style="--c:#8A9A78; --t:#F6F2E9"><span>Sage</span><code>#8A9A78</code><small>Soft accents</small></div>
+          <div class="swatch reveal" style="--c:#B8975A; --t:#1F3A2B"><span>Gold</span><code>#B8975A</code><small>Prices &amp; details</small></div>
+        </div>
+
+        <div class="type reveal">
+          <div class="type__sample type__sample--serif">Aa<small>Elegant serif · headings</small></div>
+          <div class="type__sample type__sample--sans">Aa<small>Clean sans · body &amp; UI</small></div>
+          <p class="type__note">Large editorial serif headlines with an italic accent word, paired with a light sans-serif for readable text and buttons.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. FEATURES ============ -->
+    <section class="section section--tint" id="features">
+      <div class="wrap">
+        <p class="eyebrow reveal">04 · What I built</p>
+        <h2 class="h2 reveal">Every section has <em>a job.</em></h2>
+      </div>
+
+      <!-- Feature A: collections -->
+      <article class="feature wrap">
+        <div class="feature__media reveal">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <img src="assets/sec-collections.jpg" alt="Our collections section with Basket, Bouquets and Plants tabs" loading="lazy">
+          </div>
+          <div class="phone phone--small" data-parallax="-0.08">
+            <div class="phone__notch"></div>
+            <img src="assets/mob-collection.jpg" alt="Bouquet collection page on mobile" loading="lazy">
+          </div>
+        </div>
+        <div class="feature__text reveal">
+          <span class="tag">Custom section</span>
+          <h3 class="h3">Our collections</h3>
+          <p>A curated product showcase with tabs for baskets, bouquets and plants. Visitors switch between categories instantly, without leaving the home page, and see prices, sale badges and bestsellers at a glance.</p>
+          <ul class="ticks"><li>Tabs built in Liquid + JavaScript</li><li>Sale and bestseller badges</li><li>Swipeable on phones</li></ul>
+        </div>
+      </article>
+
+      <!-- Feature B: same-day -->
+      <article class="feature feature--flip wrap">
+        <div class="feature__media reveal">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <img src="assets/sec-same-day.jpg" alt="Same-day delivery banner with countdown timer" loading="lazy">
+          </div>
+        </div>
+        <div class="feature__text reveal">
+          <span class="tag">Conversion</span>
+          <h3 class="h3">Same-day delivery banner</h3>
+          <p>A full-width video banner with a live countdown to the daily 16:00 order cutoff (Yerevan time). It answers the customer's biggest question, "will it arrive today?", and adds gentle urgency. A running strip below repeats the key promises.</p>
+          <ul class="ticks"><li>Separate desktop &amp; mobile videos</li><li>JavaScript countdown timer</li><li>Text in three languages</li></ul>
+        </div>
+      </article>
+
+      <!-- Feature C: product page -->
+      <article class="feature wrap">
+        <div class="feature__media reveal">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <video src="assets/product-desktop.mp4" muted loop playsinline preload="none" aria-label="Product page scrolling"></video>
+          </div>
+          <div class="phone phone--small" data-parallax="-0.08">
+            <div class="phone__notch"></div>
+            <img src="assets/mob-product.jpg" alt="Product page on mobile" loading="lazy">
+          </div>
+        </div>
+        <div class="feature__text reveal">
+          <span class="tag">Product page</span>
+          <h3 class="h3">A calm, clear product page</h3>
+          <p>Thumbnail gallery, a clear green call to action and a short delivery note under the price. "What's inside", "Size" and "Care" open as tidy rows filled from product metafields, followed by a product FAQ.</p>
+          <ul class="ticks"><li>Content from metafields, not hardcoded</li><li>Same-day cutoff note in the buy box</li><li>FAQ with structured data for Google</li></ul>
+        </div>
+      </article>
+
+      <!-- Feature D: popup -->
+      <article class="feature feature--flip wrap">
+        <div class="feature__media reveal">
+          <div class="browser browser--soft">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <img src="assets/popup.jpg" alt="Welcome popup with 10% discount" loading="lazy">
+          </div>
+        </div>
+        <div class="feature__text reveal">
+          <span class="tag">Marketing</span>
+          <h3 class="h3">Welcome popup</h3>
+          <p>A calm sign-up popup offering 10% off the first order. It grows the email list without blocking the shopping experience and saves subscribers straight into Shopify customers.</p>
+          <ul class="ticks"><li>Shows once, respects the visitor</li><li>Discount code delivered on sign-up</li></ul>
+        </div>
+      </article>
+
+      <!-- Feature E: flower care -->
+      <article class="feature wrap">
+        <div class="feature__media reveal">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <img src="assets/sec-flower-care.jpg" alt="Flower care section with four care tips" loading="lazy">
+          </div>
+        </div>
+        <div class="feature__text reveal">
+          <span class="tag">Content</span>
+          <h3 class="h3">Flower care &amp; blog</h3>
+          <p>Four simple care tips on the home page lead to a full care guide on the blog. Useful content builds trust, keeps customers happy after delivery and helps the store appear in search.</p>
+          <ul class="ticks"><li>Editable tips in the theme editor</li><li>Custom blog post layout</li></ul>
+        </div>
+      </article>
+
+      <!-- Feature F: languages -->
+      <article class="feature feature--flip wrap">
+        <div class="feature__media reveal">
+          <div class="langs" aria-hidden="true">
+            <p class="langs__line" data-lang="hy">Թարմ ծաղիկներ՝ այսօր</p>
+            <p class="langs__line" data-lang="ru">Свежие цветы сегодня</p>
+            <p class="langs__line" data-lang="en">Fresh flowers, today</p>
+            <div class="langs__pills"><span>HY</span><span>RU</span><span>EN</span></div>
+          </div>
+        </div>
+        <div class="feature__text reveal">
+          <span class="tag">Localisation</span>
+          <h3 class="h3">Fully trilingual</h3>
+          <p>The store speaks Armenian, Russian and English. Theme content is translated with Translate &amp; Adapt, and every custom section switches its own text based on the visitor's language.</p>
+          <ul class="ticks"><li>Language selector in the header</li><li>Translated policies and FAQ</li></ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ 6. APPS ============ -->
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow reveal">05 · Integrations</p>
+        <h2 class="h2 reveal">Apps chosen <em>with purpose.</em></h2>
+        <div class="apps">
+          <div class="app reveal"><span class="app__icon">文A</span><h3>Translate &amp; Adapt</h3><p>Armenian and Russian versions of the whole store.</p></div>
+          <div class="app reveal"><span class="app__icon">✉</span><h3>Shopify Inbox</h3><p>Live chat with instant answers about delivery and payment.</p></div>
+          <div class="app reveal"><span class="app__icon">★</span><h3>Judge.me Reviews</h3><p>Product reviews that build trust before purchase.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. PAGES ============ -->
+    <section class="section section--flush" id="pages">
+      <div class="wrap">
+        <p class="eyebrow reveal">06 · Beyond the home page</p>
+        <h2 class="h2 reveal">Pages that <em>answer questions.</em></h2>
+      </div>
+      <div class="pages" tabindex="0" aria-label="Store pages, scroll sideways">
+        <figure class="pages__item"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-collection.jpg" alt="Bouquet collection page" loading="lazy"></div><figcaption>Collection</figcaption></figure>
+        <figure class="pages__item"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-about.jpg" alt="About us page" loading="lazy"></div><figcaption>About us</figcaption></figure>
+        <figure class="pages__item"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-faq.jpg" alt="FAQ page" loading="lazy"></div><figcaption>FAQ</figcaption></figure>
+        <figure class="pages__item"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-shipping.jpg" alt="Shipping info page" loading="lazy"></div><figcaption>Shipping info</figcaption></figure>
+        <figure class="pages__item"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-blogpost.jpg" alt="Flower care blog post" loading="lazy"></div><figcaption>Blog post</figcaption></figure>
+        <figure class="pages__item"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-contact.jpg" alt="Contact page" loading="lazy"></div><figcaption>Contact</figcaption></figure>
+      </div>
+
+      <div class="wrap mobiles-head">
+        <h3 class="h3 reveal">Designed for the phone, too.</h3>
+      </div>
+      <div class="mobiles">
+        <div class="phone" data-parallax="0.06"><div class="phone__notch"></div><img src="assets/mob-product.jpg" alt="Product page on mobile" loading="lazy"></div>
+        <div class="phone" data-parallax="-0.06"><div class="phone__notch"></div><img src="assets/mob-collection.jpg" alt="Collection on mobile" loading="lazy"></div>
+        <div class="phone" data-parallax="0.08"><div class="phone__notch"></div><img src="assets/mob-faq.jpg" alt="FAQ on mobile" loading="lazy"></div>
+        <div class="phone" data-parallax="-0.04"><div class="phone__notch"></div><img src="assets/mob-blogpost.jpg" alt="Blog post on mobile" loading="lazy"></div>
+        <div class="phone" data-parallax="0.05"><div class="phone__notch"></div><img src="assets/mob-about.jpg" alt="About page on mobile" loading="lazy"></div>
+      </div>
+    </section>
+
+    <!-- ============ 8. LEARNINGS ============ -->
+    <section class="section">
+      <div class="wrap grid-2">
+        <div>
+          <p class="eyebrow reveal">07 · Result</p>
+          <h2 class="h2 reveal">What this project <em>shows.</em></h2>
+        </div>
+        <ol class="learn reveal">
+          <li><b>Design judgement.</b> A consistent palette, type scale and spacing across every page.</li>
+          <li><b>Real Shopify code.</b> Custom sections with schema settings that a store owner can edit without code.</li>
+          <li><b>E-commerce thinking.</b> Every section answers a customer question: what, when, how much, can I trust it.</li>
+          <li><b>Responsive by default.</b> Each layout designed and checked for desktop and mobile.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 9. CONTACT ============ -->
+    <section class="cta" id="contact">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--light reveal">Let's work together</p>
+        <h2 class="cta__title reveal">Need a Shopify store <em>that feels like this?</em></h2>
+        <div class="cta__actions reveal">
+          <a class="btn btn--gold" data-link="store" href="#" target="_blank" rel="noopener">See Million Roses live</a>
+          <a class="btn btn--ghost-light" data-link="upwork" href="#" target="_blank" rel="noopener">Hire me on Upwork</a>
+          <a class="btn btn--ghost-light" data-link="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <p class="cta__mail reveal"><a data-link="email" href="#">Email me</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Ofelya Shaboyan</span>
+    <span>Designed &amp; built by hand · HTML, CSS, JS</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
