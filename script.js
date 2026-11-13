@@ -94,40 +94,31 @@ const LINKS = {
      2. THE BUILD STORY (a real bouquet gathered by scrolling)
      Pieces are cut from the real product photo, so it stays photographic.
      ========================================================= */
-  // A real Million Roses bouquet (cut out from the product photo) is gathered piece by piece:
-  // one piece for each part of the store. 5 stages over the section's scroll height.
+  // The basket is filled stage by stage (photos generated from one real-looking arrangement),
+  // one stage for each part of the store. 5 stages over the section's scroll height.
   const STAGES = 5;
   const story = document.querySelector(".build");
-  const pieces = document.querySelectorAll(".piece[data-piece]");
-  const full = document.querySelector(".piece--full");
+  const shots = document.querySelectorAll(".slide__art .shot");
+  const art = document.querySelector(".slide__art");
   const texts = document.querySelectorAll(".slide__text");
   const notes = document.querySelectorAll(".build__note");
   const proofs = document.querySelectorAll(".proof");
   const dots = document.querySelectorAll(".build__dots li");
   const phoneVid = document.querySelector(".build__phone video");
-  const SLIDE_BG = ["#F6F2E9", "#F4E7E5", "#ECEFE4", "#F1E9D9", "#1F3A2B"];
   const PAGE_BG = ["#EFEBE2", "#EDE3E0", "#E5E9DD", "#ECE3D2", "#E3E1D6"];
-  // where each piece flies in from (% of its own size) and its starting tilt
-  const FROM = [[0, 70, 0], [0, -60, -6], [-75, -10, -14], [75, -10, 14], [0, -85, 4]];
-  const ease = (t) => 1 - Math.pow(1 - t, 3);
   const st = (p, n, a, b) => range(p, (n + a) / STAGES, (n + b) / STAGES);
   let lastStep = -1;
 
   const drawStory = (p) => {
     if (!story) return;
-    pieces.forEach((el, n) => {
-      const t = ease(st(p, n, n === 0 ? -0.15 : 0.02, 0.62));
-      const [dx, dy, r] = FROM[n];
-      el.style.opacity = Math.min(1, t * 1.6);
-      el.style.transform = `translate(${dx * (1 - t)}%, ${dy * (1 - t)}%) rotate(${r * (1 - t)}deg) scale(${0.92 + 0.08 * t})`;
-    });
-    if (full) full.style.opacity = st(p, 4, 0.62, 0.8);
+    // each new photo fades in at the start of its stage, over the previous one
+    shots.forEach((el, n) => { el.style.opacity = n === 0 ? 1 : st(p, n, -0.12, 0.22); });
+    if (art) art.style.setProperty("--zoom", (1.1 - 0.1 * p).toFixed(4));
 
     const step = Math.min(STAGES - 1, Math.floor(p * STAGES));
     if (step !== lastStep) {
       [texts, notes, proofs, dots].forEach((list) => list.forEach((el, n) => el.classList.toggle("is-on", n === step)));
       story.dataset.step = step;
-      story.style.setProperty("--slide-bg", SLIDE_BG[step]);
       story.style.setProperty("--build-bg", PAGE_BG[step]);
       if (phoneVid) { if (step === 3) phoneVid.play().catch(() => {}); else phoneVid.pause(); }
       lastStep = step;
