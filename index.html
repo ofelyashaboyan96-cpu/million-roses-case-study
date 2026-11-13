@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -60,41 +60,57 @@
       </ul>
     </section>
 
-    <!-- ============ 2. SCROLL STORY: the store and the bouquet grow together ============ -->
-    <section class="story" id="story">
-      <div class="story__sticky">
-        <div class="story__text">
-          <p class="eyebrow">Built in layers · scroll</p>
-          <div class="story__steps">
-            <div class="story__step is-active"><span>01 · First impression</span><h2>It starts<br>with a <em>stem.</em></h2><p>A calm, premium storefront that says "flowers" before a single word is read.</p></div>
-            <div class="story__step"><span>02 · Sales</span><h2>Collections<br>give it <em>shape.</em></h2><p>Baskets, bouquets and plants in tabs, so customers compare without leaving the home page.</p></div>
-            <div class="story__step"><span>03 · Brand</span><h2>Hand-picked,<br><em>made to bloom.</em></h2><p>The About us page shows the people and the craft that justify a premium price.</p></div>
-            <div class="story__step"><span>04 · Trust</span><h2>The product<br><em>opens up.</em></h2><p>One clear button, and "What's inside", "Size" and "Care" answered before checkout.</p></div>
-            <div class="story__step"><span>05 · Conversion</span><h2>Tied by 16:00,<br><em>delivered today.</em></h2><p>A live same-day countdown answers the gift buyer's first question: "will it arrive today?"</p></div>
-            <div class="story__step"><span>06 · Marketing</span><h2>A gift tag that<br><em>brings them back.</em></h2><p>10% off the first order for an email, growing a list the shop owns.</p></div>
-            <div class="story__step"><span>07 · The result</span><h2>Ready to<br><em>order.</em></h2><p>Blush Peony &amp; Delphinium · 21,000 AMD, a real bouquet from the store.</p></div>
+    <!-- ============ 2. BUILD STORY: a real bouquet is gathered, one store section at a time ============ -->
+    <section class="build" id="story">
+      <div class="build__sticky">
+        <div class="build__stage">
+          <div class="laptop laptop--build">
+            <div class="laptop__lid">
+              <div class="laptop__screen build__screen">
+                <div class="slide">
+                  <div class="slide__nav"><b>M<i>R</i></b><span>Flowers</span><span>Occasions</span><span>Best Sellers</span></div>
+                  <div class="slide__texts">
+                    <div class="slide__text is-on"><small>01 · Home page</small><h2>First impression<br><em>in three seconds.</em></h2></div>
+                    <div class="slide__text"><small>02 · Product page</small><h2>Every question<br><em>answered.</em></h2></div>
+                    <div class="slide__text"><small>03 · Same-day delivery</small><h2>Order by 16:00,<br><em>delivered today.</em></h2></div>
+                    <div class="slide__text"><small>04 · Mobile design</small><h2>Made for the<br><em>phone in hand.</em></h2></div>
+                    <div class="slide__text"><small>05 · Contact</small><h2>Ready to<br><em>order.</em></h2></div>
+                  </div>
+                  <div class="slide__art">
+                    <img class="piece" data-piece="0" src="assets/build/piece-stems.webp" alt="">
+                    <img class="piece" data-piece="1" src="assets/build/piece-center.webp" alt="">
+                    <img class="piece" data-piece="2" src="assets/build/piece-left.webp" alt="">
+                    <img class="piece" data-piece="3" src="assets/build/piece-right.webp" alt="">
+                    <img class="piece" data-piece="4" src="assets/build/piece-top.webp" alt="">
+                    <img class="piece piece--full" src="assets/build/bouquet-full.webp" alt="Blush Peony and Delphinium, a real Million Roses bouquet">
+                  </div>
+                  <div class="slide__price"><span>Blush Peony &amp; Delphinium</span><b>21,000 AMD</b></div>
+                  <div class="timer slide__timer" aria-live="off"><span class="timer__label">Live · Yerevan time</span><b class="timer__clock" data-timer>00:00:00</b><span class="timer__note" data-timer-note>left to order for delivery today</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="laptop__base"><span></span></div>
+          </div>
+
+          <div class="phone build__phone"><div class="phone__notch"></div><video src="assets/site-mobile.mp4" poster="assets/site-mobile-poster.jpg" muted loop playsinline preload="none" aria-label="The store on a phone"></video></div>
+
+          <div class="build__proofs" aria-hidden="true">
+            <figure class="proof is-on"><img src="assets/sec-hero.jpg" alt="" loading="lazy"><figcaption>On the live store · Home</figcaption></figure>
+            <figure class="proof"><img src="assets/page-product.jpg" alt="" loading="lazy"><figcaption>On the live store · Product page</figcaption></figure>
+            <figure class="proof"><img src="assets/sec-same-day.jpg" alt="" loading="lazy"><figcaption>On the live store · Same-day banner</figcaption></figure>
+            <figure class="proof"><img src="assets/site-mobile-poster.jpg" alt="" loading="lazy"><figcaption>On the live store · Mobile</figcaption></figure>
+            <figure class="proof"><img src="assets/page-contact.jpg" alt="" loading="lazy"><figcaption>On the live store · Contact</figcaption></figure>
           </div>
         </div>
 
-        <div class="story__art">
-          <div class="story__screens" aria-hidden="true">
-            <figure class="screen is-on"><div class="browser__bar"><i></i><i></i><i></i><b>Home</b></div><img src="assets/sec-hero.jpg" alt=""></figure>
-            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Collections</b></div><img src="assets/sec-collections.jpg" alt="" loading="lazy"></figure>
-            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>About us</b></div><img src="assets/page-about.jpg" alt="" loading="lazy"></figure>
-            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Product page</b></div><img src="assets/page-product.jpg" alt="" loading="lazy"></figure>
-            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Same-day delivery</b></div><img src="assets/sec-same-day.jpg" alt="" loading="lazy">
-              <div class="timer" aria-live="off"><span class="timer__label">Live · Yerevan time</span><b class="timer__clock" data-timer>00:00:00</b><span class="timer__note" data-timer-note>left to order for delivery today</span></div>
-            </figure>
-            <figure class="screen"><div class="browser__bar"><i></i><i></i><i></i><b>Welcome popup</b></div><img src="assets/popup.jpg" alt="" loading="lazy"></figure>
-          </div>
-          <svg class="bouquet" viewBox="0 0 400 560" role="img" aria-label="A bouquet that gains a new layer for each part of the store"></svg>
-          <figure class="story__photo">
-            <img src="assets/product-blush.jpg" alt="Blush Peony and Delphinium bouquet, a real Million Roses product" loading="lazy">
-          </figure>
+        <div class="build__notes">
+          <p class="build__note is-on"><b>Why it matters:</b> a calm, premium hero tells a gift buyer "this is a florist you can trust" before they read a word.</p>
+          <p class="build__note"><b>Why it matters:</b> one clear button, a delivery note in the buy box, and "What's inside", "Size" and "Care" rows remove every doubt before checkout.</p>
+          <p class="build__note"><b>Why it matters:</b> a live countdown to the 16:00 cutoff answers the first question of every gift buyer: "will it arrive today?"</p>
+          <p class="build__note"><b>Why it matters:</b> most flowers are ordered on a phone, so every custom section was designed and tested at phone width first.</p>
+          <p class="build__note"><b>Why it matters:</b> clear contact details and a simple form turn "maybe" into an order, in Armenian, Russian and English.</p>
         </div>
-
-        <ol class="story__dots" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
-        <div class="story__progress"><i></i></div>
+        <ol class="build__dots" aria-hidden="true"><li class="is-on"></li><li></li><li></li><li></li><li></li></ol>
       </div>
     </section>
 
@@ -181,6 +197,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

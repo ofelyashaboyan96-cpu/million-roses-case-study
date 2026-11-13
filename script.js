@@ -91,201 +91,47 @@ const LINKS = {
   }
 
   /* =========================================================
-     2. THE BOUQUET (drawn with code, assembled by scrolling)
-     Everything is generated here so it looks hand-drawn and organic.
+     2. THE BUILD STORY (a real bouquet gathered by scrolling)
+     Pieces are cut from the real product photo, so it stays photographic.
      ========================================================= */
-  const svg = document.querySelector(".bouquet");
-  const NS = "http://www.w3.org/2000/svg";
-  const make = (tag, attrs, parent) => {
-    const el = document.createElementNS(NS, tag);
-    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-    (parent || svg).appendChild(el);
-    return el;
-  };
-  // Small fixed "random" so the bouquet looks the same on every visit
-  let seed = 7;
-  const rnd = (a = 0, b = 1) => { seed = (seed * 9301 + 49297) % 233280; return a + (seed / 233280) * (b - a); };
-
-  const TIE = { x: 200, y: 400 };
-  // Delphinium spikes (tall, curved) and peony heads (round, at the front)
-  const spikes = [[112, 62, -14], [168, 24, -5], [238, 36, 8], [296, 84, 16], [204, 104, 2]];
-  const peonies = [[150, 252, 36], [226, 236, 42], [280, 288, 30], [188, 312, 34], [116, 314, 27]];
-  const sprigs = [[96, 196], [312, 196], [258, 160], [140, 150]];
-  const parts = { stems: [], leaves: [], buds: [], peonies: [], sprigs: [], ribbon: [], tag: null };
-
-  // An organic outline: a circle whose radius wobbles (used for peony petals)
-  const blob = (cx, cy, r, wob, turns, phase) => {
-    let d = "";
-    for (let i = 0; i <= 64; i++) {
-      const a = (i / 64) * Math.PI * 2;
-      const rr = r * (1 + wob * Math.sin(turns * a + phase) + wob * .5 * Math.sin((turns * 2 + 1) * a + phase * 1.7));
-      d += `${i ? "L" : "M"}${(cx + Math.cos(a) * rr).toFixed(1)} ${(cy + Math.sin(a) * rr).toFixed(1)}`;
-    }
-    return d + "Z";
-  };
-
-  // A leaf with a pointed tip and a centre vein, drawn from (0,0) upward
-  const leafPath = (len, wid) =>
-    `M0 0 C ${wid} ${-len * .25} ${wid * .8} ${-len * .7} 0 ${-len} C ${-wid * .9} ${-len * .68} ${-wid} ${-len * .28} 0 0 Z`;
-
-  if (svg) {
-    const sway = make("g", { class: "sway" });
-    const gStems = make("g", {}, sway), gLeaves = make("g", {}, sway), gSprig = make("g", {}, sway),
-          gBuds = make("g", {}, sway), gPeony = make("g", {}, sway), gRibbon = make("g", {}, sway);
-    const greens = ["#5f7552", "#6f8460", "#7b8f69"];
-
-    const addStem = ([x, y], n, parent) => {
-      const bx = 184 + (n % 7) * 5.5;
-      const bend = rnd(-18, 18);
-      const d = `M${bx} 548 C ${bx + rnd(-4, 4)} 480 ${TIE.x} 430 ${TIE.x} ${TIE.y} C ${TIE.x + (x - TIE.x) * .3 + bend} ${TIE.y - 90} ${x - bend * .4} ${y + 120} ${x} ${y}`;
-      const path = make("path", { d, class: "stem", stroke: greens[n % 3], "stroke-width": rnd(1.6, 2.6) }, parent || gStems);
-      const len = path.getTotalLength();
-      path.style.strokeDasharray = len;
-      path.style.strokeDashoffset = len;
-      parts.stems.push({ el: path, len });
-      return { path, len };
-    };
-
-    // Leaves grow along each stem, following its direction
-    const addLeaf = (path, len, at, side, size) => {
-      const p = path.getPointAtLength(len * at), q = path.getPointAtLength(len * at - 2);
-      const ang = (Math.atan2(p.y - q.y, p.x - q.x) * 180) / Math.PI + 90 + side * rnd(28, 48);
-      const g = make("g", { class: "leafg" }, gLeaves);
-      make("path", { d: leafPath(size, size * .32), class: "leaf" }, g);
-      make("path", { d: `M0 0 Q ${side * 2} ${-size * .5} 0 ${-size * .92}`, class: "vein" }, g);
-      g.dataset.base = `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px) rotate(${ang.toFixed(1)}deg)`;
-      parts.leaves.push(g);
-    };
-
-    // Delphinium: star-shaped florets climbing the top of the stem
-    spikes.forEach((s, n) => {
-      const { path, len } = addStem(s, n);
-      addLeaf(path, len, .6, n % 2 ? 1 : -1, rnd(40, 58));
-      const lilac = ["#B7A2D2", "#CDBDE3", "#A38BC2", "#D9CDEA"];
-      for (let k = 0; k < 11; k++) {
-        const t = .64 + k * .033;
-        const p = path.getPointAtLength(len * Math.min(t, 1));
-        const side = k % 2 ? 1 : -1;
-        const size = 8.5 - k * .55;
-        const cx = p.x + side * rnd(2, 6), cy = p.y;
-        const g = make("g", { class: "bud" }, gBuds);
-        if (k < 8) {
-          for (let i = 0; i < 5; i++) {
-            const a = (i / 5) * Math.PI * 2 + rnd(0, 1);
-            make("ellipse", { cx: cx + Math.cos(a) * size * .45, cy: cy + Math.sin(a) * size * .45, rx: size * .45, ry: size * .32,
-              transform: `rotate(${(a * 180) / Math.PI} ${cx + Math.cos(a) * size * .45} ${cy + Math.sin(a) * size * .45})`, fill: lilac[(k + i) % 4] }, g);
-          }
-          make("circle", { cx, cy, r: size * .18, fill: "#F3EFE6" }, g);
-        } else {
-          make("ellipse", { cx, cy, rx: size * .35, ry: size * .55, fill: "#C7B4DD" }, g); // closed buds at the tip
-        }
-        g.dataset.order = k;
-        parts.buds.push(g);
-      }
-    });
-
-    // Peonies: three ruffled layers, darker towards the centre
-    peonies.forEach((pk, n) => {
-      const { path, len } = addStem(pk, n + spikes.length);
-      addLeaf(path, len, .5, n % 2 ? -1 : 1, rnd(46, 64));
-      addLeaf(path, len, .7, n % 2 ? 1 : -1, rnd(34, 46));
-      const [x, y, s] = pk;
-      const g = make("g", { class: "peony" }, gPeony);
-      make("path", { d: blob(x, y, s, .09, 7, rnd(0, 6)), fill: "#F4D3D3", stroke: "#D9A5AB", "stroke-width": .8 }, g);
-      make("path", { d: blob(x + rnd(-2, 2), y + rnd(-2, 2), s * .74, .11, 6, rnd(0, 6)), fill: "#EEBDC2", stroke: "#D08F98", "stroke-width": .8 }, g);
-      make("path", { d: blob(x, y, s * .46, .14, 5, rnd(0, 6)), fill: "#E5A2AB", stroke: "#C47D88", "stroke-width": .8 }, g);
-      make("path", { d: blob(x, y, s * .2, .2, 4, rnd(0, 6)), fill: "#D98D99" }, g);
-      parts.peonies.push(g);
-    });
-
-    // Gypsophila: airy white sprigs that appear with the peonies
-    sprigs.forEach(([x, y], n) => {
-      const { path, len } = addStem([x, y], n + 3);
-      path.setAttribute("stroke-width", 1.1);
-      const g = make("g", { class: "peony" }, gSprig);
-      for (let k = 0; k < 9; k++) {
-        make("circle", { cx: x + rnd(-14, 14), cy: y + rnd(-10, 12), r: rnd(2, 3.6), fill: "#FFFFFF", stroke: "#D8CFC0", "stroke-width": .7 }, g);
-      }
-      parts.sprigs.push(g);
-    });
-
-    // Ribbon: a soft bow and two tails at the tie point
-    [
-      `M${TIE.x} ${TIE.y} C 168 378 146 410 ${TIE.x} ${TIE.y + 3}`,
-      `M${TIE.x} ${TIE.y} C 232 378 254 410 ${TIE.x} ${TIE.y + 3}`,
-      `M${TIE.x} ${TIE.y + 3} C 194 438 178 468 170 504`,
-      `M${TIE.x} ${TIE.y + 3} C 208 438 224 466 236 506`,
-      `M180 ${TIE.y - 3} Q 200 ${TIE.y + 4} 220 ${TIE.y - 3}`
-    ].forEach((d) => {
-      const path = make("path", { d, class: "ribbon" }, gRibbon);
-      const len = path.getTotalLength();
-      path.style.strokeDasharray = len;
-      path.style.strokeDashoffset = len;
-      parts.ribbon.push({ el: path, len });
-    });
-
-    // Gift tag hanging from the ribbon (marketing stage)
-    const tag = make("g", { class: "tag" }, sway);
-    make("path", { d: `M${TIE.x - 4} ${TIE.y + 4} C 170 430 150 440 136 452`, class: "tag-string" }, tag);
-    const card = make("g", { transform: "rotate(-14 112 470)" }, tag);
-    make("rect", { x: 72, y: 450, width: 84, height: 44, rx: 6, class: "tag-card" }, card);
-    make("circle", { cx: 82, cy: 472, r: 3, fill: "none", stroke: "#B8975A", "stroke-width": 1.2 }, card);
-    const t1 = make("text", { x: 120, y: 470, "font-size": 15, "font-weight": 500 }, card); t1.textContent = "10% OFF";
-    const t2 = make("text", { x: 120, y: 484, "font-size": 7.5, "letter-spacing": 1.2, fill: "#8C6D37" }, card); t2.textContent = "WELCOME10";
-    parts.tag = tag;
-  }
-
-  // Apply a progress value (0..1) to the drawing.
-  // 7 stages, one per part of the store; each stage adds one layer to the bouquet.
-  const STAGES = 7;
-  const STEP_BG = ["#F6F2E9", "#EDF0E5", "#F0ECF4", "#F7EBEA", "#F4ECDD", "#EEF0E8", "#1F3A2B"];
-  const story = document.querySelector(".story");
-  const steps = document.querySelectorAll(".story__step");
-  const screens = document.querySelectorAll(".screen");
-  const dots = document.querySelectorAll(".story__dots li");
-  let lastStep = -1;
-  // progress inside stage n, between fractions a and b of that stage
+  // A real Million Roses bouquet (cut out from the product photo) is gathered piece by piece:
+  // one piece for each part of the store. 5 stages over the section's scroll height.
+  const STAGES = 5;
+  const story = document.querySelector(".build");
+  const pieces = document.querySelectorAll(".piece[data-piece]");
+  const full = document.querySelector(".piece--full");
+  const texts = document.querySelectorAll(".slide__text");
+  const notes = document.querySelectorAll(".build__note");
+  const proofs = document.querySelectorAll(".proof");
+  const dots = document.querySelectorAll(".build__dots li");
+  const phoneVid = document.querySelector(".build__phone video");
+  const SLIDE_BG = ["#F6F2E9", "#F4E7E5", "#ECEFE4", "#F1E9D9", "#1F3A2B"];
+  const PAGE_BG = ["#EFEBE2", "#EDE3E0", "#E5E9DD", "#ECE3D2", "#E3E1D6"];
+  // where each piece flies in from (% of its own size) and its starting tilt
+  const FROM = [[0, 70, 0], [0, -60, -6], [-75, -10, -14], [75, -10, 14], [0, -85, 4]];
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
   const st = (p, n, a, b) => range(p, (n + a) / STAGES, (n + b) / STAGES);
+  let lastStep = -1;
 
   const drawStory = (p) => {
-    if (!svg) return;
-    const nS = parts.stems.length;
-    parts.stems.forEach(({ el, len }, n) => {
-      el.style.strokeDashoffset = len * (1 - st(p, 0, .05 + (n / nS) * .35, .45 + (n / nS) * .4));
+    if (!story) return;
+    pieces.forEach((el, n) => {
+      const t = ease(st(p, n, n === 0 ? -0.15 : 0.02, 0.62));
+      const [dx, dy, r] = FROM[n];
+      el.style.opacity = Math.min(1, t * 1.6);
+      el.style.transform = `translate(${dx * (1 - t)}%, ${dy * (1 - t)}%) rotate(${r * (1 - t)}deg) scale(${0.92 + 0.08 * t})`;
     });
-    parts.leaves.forEach((leaf, n) => {
-      const t = st(p, 1, .05 + (n % 12) * .04, .35 + (n % 12) * .04);
-      leaf.style.transform = `${leaf.dataset.base} scale(${t})`;
-    });
-    parts.buds.forEach((bud) => {
-      const t = st(p, 2, .05 + bud.dataset.order * .05, .25 + bud.dataset.order * .05);
-      bud.style.transform = `scale(${t})`;
-    });
-    parts.sprigs.forEach((g, n) => {
-      const t = st(p, 2, .45 + n * .08, .7 + n * .08);
-      g.style.transform = `scale(${t})`;
-    });
-    parts.peonies.forEach((g, n) => {
-      const t = st(p, 3, .05 + n * .1, .4 + n * .1);
-      g.style.transform = `scale(${t}) rotate(${(1 - t) * -40}deg)`;
-    });
-    parts.ribbon.forEach(({ el, len }, n) => { el.style.strokeDashoffset = len * (1 - st(p, 4, .05 + n * .1, .4 + n * .1)); });
-    if (parts.tag) {
-      const t = st(p, 5, .05, .55);
-      parts.tag.style.opacity = t;
-      parts.tag.style.transform = `rotate(${(1 - t) * 35}deg) scale(${.6 + .4 * t})`;
-    }
+    if (full) full.style.opacity = st(p, 4, 0.62, 0.8);
 
-    const step = Math.min(STAGES - 1, Math.floor(p * STAGES * 1.02));
+    const step = Math.min(STAGES - 1, Math.floor(p * STAGES));
     if (step !== lastStep) {
-      steps.forEach((s, n) => s.classList.toggle("is-active", n === step));
-      screens.forEach((s, n) => { s.classList.toggle("is-on", n === step); s.classList.toggle("is-past", n < step); });
-      dots.forEach((d, n) => d.classList.toggle("is-on", n === step));
-      story.style.setProperty("--story-bg", STEP_BG[step]);
-      story.classList.toggle("is-final", step === STAGES - 1);
+      [texts, notes, proofs, dots].forEach((list) => list.forEach((el, n) => el.classList.toggle("is-on", n === step)));
+      story.dataset.step = step;
+      story.style.setProperty("--slide-bg", SLIDE_BG[step]);
+      story.style.setProperty("--build-bg", PAGE_BG[step]);
+      if (phoneVid) { if (step === 3) phoneVid.play().catch(() => {}); else phoneVid.pause(); }
       lastStep = step;
     }
-    story.style.setProperty("--p", p.toFixed(3));
   };
 
   if (reduceMotion) { drawStory(1); return; }
