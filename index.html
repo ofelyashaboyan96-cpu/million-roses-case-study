@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
@@ -69,20 +69,34 @@
               <div class="laptop__screen build__screen">
                 <div class="slide">
                   <div class="slide__nav"><b>M<i>R</i></b><span>Flowers</span><span>Occasions</span><span>Best Sellers</span></div>
-                  <div class="slide__texts">
-                    <div class="slide__text is-on"><small>01 · Home page</small><h2>First impression<br><em>in three seconds.</em></h2></div>
-                    <div class="slide__text"><small>02 · Product page</small><h2>Every question<br><em>answered.</em></h2></div>
-                    <div class="slide__text"><small>03 · Same-day delivery</small><h2>Order by 16:00,<br><em>delivered today.</em></h2></div>
-                    <div class="slide__text"><small>04 · Mobile design</small><h2>Made for the<br><em>phone in hand.</em></h2></div>
-                    <div class="slide__text"><small>05 · Contact</small><h2>Ready to<br><em>order.</em></h2></div>
+                  <div class="site">
+                    <section class="sec sec--home">
+                      <div class="sec__txt"><small>01 · Home page</small><h2>Million<br><em>Roses.</em></h2><p>Flowers&nbsp;&nbsp;|&nbsp;&nbsp;Gifts&nbsp;&nbsp;|&nbsp;&nbsp;Emotions</p><span class="sbtn sbtn--gold">Shop flowers</span></div>
+                    </section>
+                    <section class="sec sec--product">
+                      <div class="sec__txt"><small>02 · Product page</small><p class="crumb">Home / Baskets</p><h2>Every question<br><em>answered.</em></h2>
+                        <span class="sbtn sbtn--green">Add to cart</span><span class="sbtn sbtn--gold">Buy it now</span>
+                        <ul class="rows"><li>What's inside <i>+</i></li><li>Size <i>+</i></li><li>Care <i>+</i></li></ul></div>
+                    </section>
+                    <section class="sec sec--sameday">
+                      <div class="sec__txt"><small>03 · Same-day delivery · Yerevan</small><h2>Order today,<br><em>delivered today.</em></h2>
+                        <div class="clock"><b data-timer>00:00:00</b><span data-timer-note>left to order for delivery today</span></div>
+                        <span class="sbtn sbtn--gold">Order for today</span></div>
+                    </section>
+                    <section class="sec sec--mobile">
+                      <div class="sec__txt"><small>04 · Mobile design</small><h2>Made for the<br><em>phone in hand.</em></h2><p>Every custom section was designed at phone width first, then scaled up.</p></div>
+                    </section>
+                    <section class="sec sec--contact">
+                      <div class="sec__txt"><small>05 · Contact</small><h2>Ready to<br><em>order.</em></h2>
+                        <div class="form"><span>Name</span><span>Phone</span><span class="form__msg">Message</span><b class="sbtn sbtn--green">Send</b></div></div>
+                    </section>
                   </div>
-                  <div class="slide__art">
-                    <img class="shot is-on" src="assets/build/stage-1.jpg" alt="An empty woven basket lined with paper">
-                    <img class="shot" src="assets/build/stage-2.jpg" alt="Carnations, spray roses and fresh greenery arranged in the basket" loading="lazy">
-                    <img class="shot" src="assets/build/stage-3.jpg" alt="Green hydrangea added to the arrangement" loading="lazy">
-                    <img class="shot" src="assets/build/stage-4.jpg" alt="The finished basket with pink snapdragons" loading="lazy">
+                  <div class="sticker" aria-hidden="true">
+                    <img class="layer is-on" src="assets/build/layer-1.webp" alt="">
+                    <img class="layer" src="assets/build/layer-2.webp" alt="">
+                    <img class="layer" src="assets/build/layer-3.webp" alt="">
+                    <img class="layer" src="assets/build/layer-4.webp" alt="">
                   </div>
-                  <div class="timer slide__timer" aria-live="off"><span class="timer__label">Live · Yerevan time</span><b class="timer__clock" data-timer>00:00:00</b><span class="timer__note" data-timer-note>left to order for delivery today</span></div>
                 </div>
               </div>
             </div>
@@ -194,6 +208,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
