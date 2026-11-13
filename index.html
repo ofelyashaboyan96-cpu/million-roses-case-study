@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -60,69 +60,84 @@
       </ul>
     </section>
 
-    <!-- ============ 2. BUILD STORY: a real bouquet is gathered, one store section at a time ============ -->
-    <section class="build" id="story">
-      <div class="build__sticky">
-        <div class="build__stage">
-          <div class="laptop laptop--build">
-            <div class="laptop__lid">
-              <div class="laptop__screen build__screen">
-                <div class="slide">
-                  <div class="slide__nav"><b>M<i>R</i></b><span>Flowers</span><span>Occasions</span><span>Best Sellers</span></div>
-                  <div class="site">
-                    <section class="sec sec--home">
-                      <div class="sec__txt"><small>01 · Home page</small><h2>Million<br><em>Roses.</em></h2><p>Flowers&nbsp;&nbsp;|&nbsp;&nbsp;Gifts&nbsp;&nbsp;|&nbsp;&nbsp;Emotions</p><span class="sbtn sbtn--gold">Shop flowers</span></div>
-                    </section>
-                    <section class="sec sec--product">
-                      <div class="sec__txt"><small>02 · Product page</small><p class="crumb">Home / Baskets</p><h2>Every question<br><em>answered.</em></h2>
-                        <span class="sbtn sbtn--green">Add to cart</span><span class="sbtn sbtn--gold">Buy it now</span>
-                        <ul class="rows"><li>What's inside <i>+</i></li><li>Size <i>+</i></li><li>Care <i>+</i></li></ul></div>
-                    </section>
-                    <section class="sec sec--sameday">
-                      <div class="sec__txt"><small>03 · Same-day delivery · Yerevan</small><h2>Order today,<br><em>delivered today.</em></h2>
-                        <div class="clock"><b data-timer>00:00:00</b><span data-timer-note>left to order for delivery today</span></div>
-                        <span class="sbtn sbtn--gold">Order for today</span></div>
-                    </section>
-                    <section class="sec sec--mobile">
-                      <div class="sec__txt"><small>04 · Mobile design</small><h2>Made for the<br><em>phone in hand.</em></h2><p>Every custom section was designed at phone width first, then scaled up.</p></div>
-                    </section>
-                    <section class="sec sec--contact">
-                      <div class="sec__txt"><small>05 · Contact</small><h2>Ready to<br><em>order.</em></h2>
-                        <div class="form"><span>Name</span><span>Phone</span><span class="form__msg">Message</span><b class="sbtn sbtn--green">Send</b></div></div>
-                    </section>
-                  </div>
-                  <div class="sticker" aria-hidden="true">
-                    <img class="layer is-on" src="assets/build/layer-1.webp" alt="">
-                    <img class="layer" src="assets/build/layer-2.webp" alt="">
-                    <img class="layer" src="assets/build/layer-3.webp" alt="">
-                    <img class="layer" src="assets/build/layer-4.webp" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="laptop__base"><span></span></div>
-          </div>
-
-          <div class="phone build__phone"><div class="phone__notch"></div><video src="assets/site-mobile.mp4" poster="assets/site-mobile-poster.jpg" muted loop playsinline preload="none" aria-label="The store on a phone"></video></div>
-
-          <div class="build__proofs" aria-hidden="true">
-            <figure class="proof is-on"><img src="assets/sec-hero.jpg" alt="" loading="lazy"><figcaption>On the live store · Home</figcaption></figure>
-            <figure class="proof"><img src="assets/page-product.jpg" alt="" loading="lazy"><figcaption>On the live store · Product page</figcaption></figure>
-            <figure class="proof"><img src="assets/sec-same-day.jpg" alt="" loading="lazy"><figcaption>On the live store · Same-day banner</figcaption></figure>
-            <figure class="proof"><img src="assets/site-mobile-poster.jpg" alt="" loading="lazy"><figcaption>On the live store · Mobile</figcaption></figure>
-            <figure class="proof"><img src="assets/page-contact.jpg" alt="" loading="lazy"><figcaption>On the live store · Contact</figcaption></figure>
-          </div>
+    <!-- ============ 2. THE STORE, PAGE BY PAGE (real screenshots, desktop + phone) ============ -->
+    <section class="chapters" id="story">
+      <header class="chapters__head wrap">
+        <p class="eyebrow reveal">The store, page by page</p>
+        <h2 class="h2 reveal">Every page has <em>one job.</em></h2>
+      </header>
+      <article class="chapter chapter--right">
+        <div class="chapter__text reveal">
+          <span class="chapter__num">01</span>
+          <p class="chapter__role">Home page · First impression</p>
+          <h3 class="chapter__title">Calm, premium, <em>unmistakably floral.</em></h3>
+          <p class="chapter__why">A full-screen hero and a soft palette tell a gift buyer "this florist is worth trusting" before they read a word.</p>
         </div>
-
-        <div class="build__notes">
-          <p class="build__note is-on"><b>Why it matters:</b> a calm, premium hero tells a gift buyer "this is a florist you can trust" before they read a word.</p>
-          <p class="build__note"><b>Why it matters:</b> one clear button, a delivery note in the buy box, and "What's inside", "Size" and "Care" rows remove every doubt before checkout.</p>
-          <p class="build__note"><b>Why it matters:</b> a live countdown to the 16:00 cutoff answers the first question of every gift buyer: "will it arrive today?"</p>
-          <p class="build__note"><b>Why it matters:</b> most flowers are ordered on a phone, so every custom section was designed and tested at phone width first.</p>
-          <p class="build__note"><b>Why it matters:</b> clear contact details and a simple form turn "maybe" into an order, in Armenian, Russian and English.</p>
+        <div class="chapter__media">
+          <div class="browser chapter__browser rise"><div class="browser__bar"><i></i><i></i><i></i></div><video src="assets/site-desktop.mp4" poster="assets/site-desktop-poster.jpg" muted loop playsinline preload="none" aria-label="The home page scrolling"></video></div>
+          <div class="phone chapter__phone" data-parallax="-0.14"><div class="phone__notch"></div><video src="assets/site-mobile.mp4" poster="assets/site-mobile-poster.jpg" muted loop playsinline preload="none" aria-label="The home page on a phone"></video></div>
         </div>
-        <ol class="build__dots" aria-hidden="true"><li class="is-on"></li><li></li><li></li><li></li><li></li></ol>
-      </div>
+      </article>
+      <article class="chapter chapter--left">
+        <div class="chapter__text reveal">
+          <span class="chapter__num">02</span>
+          <p class="chapter__role">Collections · Sales</p>
+          <h3 class="chapter__title">Choose without <em>leaving the page.</em></h3>
+          <p class="chapter__why">Baskets, bouquets and plants switch with tabs, with sale and bestseller badges to guide the choice.</p>
+        </div>
+        <div class="chapter__media">
+          <div class="browser chapter__browser rise"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/sec-collections.jpg" alt="Our collections section with tabs" loading="lazy"></div>
+          <div class="phone chapter__phone" data-parallax="-0.14"><div class="phone__notch"></div><img src="assets/mob-collection.jpg" alt="A collection page on a phone" loading="lazy"></div>
+        </div>
+      </article>
+      <article class="chapter chapter--right">
+        <div class="chapter__text reveal">
+          <span class="chapter__num">03</span>
+          <p class="chapter__role">Product page · Trust</p>
+          <h3 class="chapter__title">Every doubt <em>answered before checkout.</em></h3>
+          <p class="chapter__why">One clear button, a same-day note in the buy box, and "What's inside", "Size" and "Care" filled from product data.</p>
+        </div>
+        <div class="chapter__media">
+          <div class="browser chapter__browser rise"><div class="browser__bar"><i></i><i></i><i></i></div><video src="assets/product-desktop.mp4" poster="assets/page-product.jpg" muted loop playsinline preload="none" aria-label="A product page scrolling"></video></div>
+          <div class="phone chapter__phone" data-parallax="-0.14"><div class="phone__notch"></div><img src="assets/mob-product.jpg" alt="A product page on a phone" loading="lazy"></div>
+        </div>
+      </article>
+      <article class="chapter chapter--left">
+        <div class="chapter__text reveal">
+          <span class="chapter__num">04</span>
+          <p class="chapter__role">Same-day delivery · Conversion</p>
+          <h3 class="chapter__title">Order by 16:00, <em>delivered today.</em></h3>
+          <p class="chapter__why">A live countdown in Yerevan time answers the first question of every gift buyer: "will it arrive today?"</p>
+        </div>
+        <div class="chapter__media">
+          <div class="browser chapter__browser rise"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/sec-same-day.jpg" alt="Same-day delivery banner with a countdown" loading="lazy"><div class="timer" aria-live="off"><span class="timer__label">Live · Yerevan time</span><b class="timer__clock" data-timer>00:00:00</b><span class="timer__note" data-timer-note>left to order for delivery today</span></div></div>
+          <div class="phone chapter__phone" data-parallax="-0.14"><div class="phone__notch"></div><img src="assets/mob-sameday.jpg" alt="The same-day banner on a phone" loading="lazy"></div>
+        </div>
+      </article>
+      <article class="chapter chapter--right">
+        <div class="chapter__text reveal">
+          <span class="chapter__num">05</span>
+          <p class="chapter__role">About us · Brand</p>
+          <h3 class="chapter__title">The people <em>behind the flowers.</em></h3>
+          <p class="chapter__why">A slow, editorial About page that turns a shop into a florist you know, which is what justifies a premium price.</p>
+        </div>
+        <div class="chapter__media">
+          <div class="browser chapter__browser rise"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-about.jpg" alt="The About us page" loading="lazy"></div>
+          <div class="phone chapter__phone" data-parallax="-0.14"><div class="phone__notch"></div><img src="assets/mob-about.jpg" alt="The About us page on a phone" loading="lazy"></div>
+        </div>
+      </article>
+      <article class="chapter chapter--left">
+        <div class="chapter__text reveal">
+          <span class="chapter__num">06</span>
+          <p class="chapter__role">Contact · Ready to order</p>
+          <h3 class="chapter__title">From "maybe" <em>to an order.</em></h3>
+          <p class="chapter__why">Clear details and a short form, in Armenian, Russian and English, for customers who prefer to ask first.</p>
+        </div>
+        <div class="chapter__media">
+          <div class="browser chapter__browser rise"><div class="browser__bar"><i></i><i></i><i></i></div><img src="assets/page-contact.jpg" alt="The contact page" loading="lazy"></div>
+          <div class="phone chapter__phone" data-parallax="-0.14"><div class="phone__notch"></div><img src="assets/mob-contact.jpg" alt="The contact page on a phone" loading="lazy"></div>
+        </div>
+      </article>
     </section>
 
     <!-- ============ 4. MOBILE ============ -->
@@ -208,6 +223,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

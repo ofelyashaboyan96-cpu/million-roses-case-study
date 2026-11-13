@@ -30,7 +30,7 @@ const LINKS = {
       revealObs.unobserve(e.target);
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll(".reveal, .wipe, .popup-demo").forEach((el) => revealObs.observe(el));
+  document.querySelectorAll(".reveal, .rise").forEach((el) => revealObs.observe(el));
 
   /* Live same-day countdown: orders until 16:00 Yerevan time (UTC+4) */
   const clockEl = document.querySelector("[data-timer]");
@@ -90,49 +90,8 @@ const LINKS = {
     if (!reduceMotion) setInterval(show, 2600);
   }
 
-  /* =========================================================
-     2. THE BUILD STORY (a real bouquet gathered by scrolling)
-     Pieces are cut from the real product photo, so it stays photographic.
-     ========================================================= */
-  // The basket is a "sticker" that travels through a mini website on the laptop screen.
-  // Each scroll stage = one section of the store; on every new section the screen scrolls,
-  // the basket moves to a new place and gains one layer (photos made from one arrangement).
-  const STAGES = 5;
-  const story = document.querySelector(".build");
-  const sticker = document.querySelector(".sticker");
-  const layers = document.querySelectorAll(".sticker .layer");
-  const notes = document.querySelectorAll(".build__note");
-  const proofs = document.querySelectorAll(".proof");
-  const dots = document.querySelectorAll(".build__dots li");
-  const phoneVid = document.querySelector(".build__phone video");
-  const PAGE_BG = ["#EFEBE2", "#EDE3E0", "#E3E6DD", "#E5E9DD", "#EFEBE2"];
-  // sticker place per section: [left %, top %, height %] of the screen
-  const SPOT = [[52, 15, 80], [5, 16, 74], [52, 11, 86], [48, 13, 84], [5, 15, 76]];
-  const SPOT_M = [[52, 20, 76], [2, 26, 60], [54, 18, 78], [52, 20, 76], [2, 24, 62]];
-  const LAYER = [0, 1, 2, 3, 3];
-  let lastStep = -1;
-
-  const drawStory = (p) => {
-    if (!story) return;
-    const step = Math.min(STAGES - 1, Math.floor(p * STAGES));
-    if (step === lastStep) return;
-    [notes, proofs, dots].forEach((list) => list.forEach((el, n) => el.classList.toggle("is-on", n === step)));
-    story.dataset.step = step;
-    story.style.setProperty("--step", step);
-    story.style.setProperty("--build-bg", PAGE_BG[step]);
-    if (sticker) {
-      const [x, y, h] = (window.innerWidth < 760 ? SPOT_M : SPOT)[step];
-      sticker.style.setProperty("--sx", x + "%");
-      sticker.style.setProperty("--sy", y + "%");
-      sticker.style.setProperty("--sh", h + "%");
-      layers.forEach((el, n) => el.classList.toggle("is-on", n <= LAYER[step]));
-      if (lastStep !== -1 && LAYER[step] !== LAYER[lastStep]) {
-        sticker.classList.remove("is-pop"); void sticker.offsetWidth; sticker.classList.add("is-pop");
-      }
-    }
-    if (phoneVid) { if (step === 3) phoneVid.play().catch(() => {}); else phoneVid.pause(); }
-    lastStep = step;
-  };
+  const story = null;
+  const drawStory = () => {};
 
   if (reduceMotion) { drawStory(1); return; }
 
