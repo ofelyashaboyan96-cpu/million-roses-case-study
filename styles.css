@@ -141,7 +141,7 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
 .sameday__phone{position:absolute;right:var(--gut);bottom:-60px;width:clamp(120px,14vw,200px)}
 
 /* phone frame */
-.phone{border-radius:24px;border:6px solid #1d1d1f;overflow:hidden;background:#000;box-shadow:0 24px 50px rgba(31,58,43,.22)}
+.phone{border-radius:24px;border:6px solid #1d1d1f;overflow:hidden;background:#F6F2E9;box-shadow:0 24px 50px rgba(31,58,43,.22)}
 .phone img{width:100%;aspect-ratio:9/19.5;object-fit:cover;object-position:top}
 
 /* ---------- 5. annotated product ---------- */
@@ -163,7 +163,7 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
 .mobile__head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:clamp(40px,6vw,70px)}
 .mobile__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,78px);line-height:1;max-width:760px}
 .mobile__title em{color:#a0576a}
-.mobiles{display:flex;gap:clamp(16px,2.4vw,32px);width:max-content;padding:0 var(--gut);will-change:transform}
+.mobiles{display:flex;align-items:flex-start;gap:clamp(16px,2.4vw,32px);width:max-content;padding:0 var(--gut);will-change:transform}
 .mobiles .phone{width:clamp(170px,17vw,240px);flex:none}
 .mobiles .phone:nth-child(even){margin-top:60px}
 
