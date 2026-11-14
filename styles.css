@@ -141,7 +141,10 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
 .sameday__phone{position:absolute;right:var(--gut);bottom:-60px;width:clamp(120px,14vw,200px)}
 
 /* phone frame */
-.phone{border-radius:24px;border:6px solid #1d1d1f;overflow:hidden;background:#F6F2E9;box-shadow:0 24px 50px rgba(31,58,43,.22)}
+/* iPhone-style frame: dark bezel, status bar with time, Dynamic Island */
+.phone{position:relative;border-radius:34px;border:7px solid #1b1b1d;outline:1px solid #3a3a3d;overflow:hidden;background:#F6F2E9;padding-top:30px;box-shadow:0 24px 50px rgba(31,58,43,.22)}
+.phone::before{content:"";position:absolute;z-index:2;top:8px;left:50%;width:34%;height:17px;transform:translateX(-50%);background:#0b0b0c;border-radius:20px}
+.phone::after{content:"9:41";position:absolute;z-index:2;top:8px;left:12%;font:600 10px/17px -apple-system,"Helvetica Neue",Arial,sans-serif;color:#111}
 .phone img{width:100%;aspect-ratio:9/19.5;object-fit:cover;object-position:top}
 
 /* ---------- 5. annotated product ---------- */
@@ -157,6 +160,16 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
 .pin{position:absolute;left:var(--x);top:var(--y);width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:13px;box-shadow:0 0 0 0 rgba(184,151,90,.6);animation:ping 2.4s infinite;transition:transform .3s}
 .pin.is-hot{transform:scale(1.25);background:var(--green)}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(184,151,90,.55)}70%{box-shadow:0 0 0 16px rgba(184,151,90,0)}100%{box-shadow:0 0 0 0 rgba(184,151,90,0)}}
+
+/* ---------- poster (campaign style) ---------- */
+.poster{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a130e;color:#fff}
+.poster__bg{position:absolute;inset:-4%;background:url(assets/poster.jpg) center/cover no-repeat;animation:drift 22s ease-in-out infinite alternate}
+.poster__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,10,.15) 0%,rgba(20,14,10,0) 55%,rgba(236,220,196,.55) 100%)}
+@keyframes drift{from{transform:scale(1) translateX(0)}to{transform:scale(1.06) translateX(-2%)}}
+.poster__type{position:relative;z-index:1;margin-left:18%;font-family:var(--sans);font-weight:500;text-transform:uppercase;letter-spacing:-.01em;line-height:.98;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.poster__brand{font-size:clamp(40px,6vw,88px);letter-spacing:-.02em;margin-left:-.6em}
+.poster__sub{font-size:clamp(22px,2.8vw,40px)}
+.poster__meta{margin-top:6px;font-size:clamp(14px,1.4vw,20px);line-height:1.2}
 
 /* ---------- 6. mobile (blush band) ---------- */
 .mobile{background:var(--blush);padding:clamp(80px,11vw,140px) 0;overflow:hidden}
@@ -256,6 +269,9 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
   .pin{width:26px;height:26px;margin:-13px 0 0 -13px;font-size:11px}
   .mobile__head{flex-direction:column;align-items:flex-start}
   .mobiles .phone{width:150px}
+  .poster__type{margin-left:0;padding:0 24px}
+  .poster__brand{margin-left:0}
+  .poster{min-height:80svh}
   .apps{grid-template-columns:1fr}
   .collage{grid-template-columns:repeat(6,1fr);grid-auto-rows:auto;gap:24px 12px}
   .c{grid-row:auto!important}
@@ -273,5 +289,6 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
   html{scroll-behavior:auto}
   .reveal,.rise,.hero__w,.hero__bouquet,.hero__block,.hero__stem,.hero__meta,.hero__lead{transition:opacity .3s;transform:none!important}
   .pin{animation:none}
+  .poster__bg{animation:none}
   .tile:hover img,.tile:hover video{transform:none}
 }
