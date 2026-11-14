@@ -105,6 +105,7 @@ const LINKS = {
   const bouquet = document.querySelector(".hero__bouquet");
   const stem = document.querySelector(".hero__stem");
   const strip = document.querySelector("[data-drift]");
+  const laptop = document.querySelector("[data-tilt]");
   const drifters = document.querySelectorAll("[data-parallax]");
   let ticking = false;
 
@@ -112,6 +113,11 @@ const LINKS = {
     const vh = window.innerHeight, y = window.scrollY;
     bar.classList.toggle("is-solid", y > 40);
     if (!reduceMotion) {
+      if (laptop) {
+        const r = laptop.getBoundingClientRect();
+        const t = clamp(1 - (r.top - vh * .15) / (vh * .6));
+        laptop.style.transform = `rotateX(${8 * (1 - t)}deg) scale(${.94 + .06 * t})`;
+      }
       if (y < vh * 1.2 && window.innerWidth > 749) {
         if (block) block.style.translate = `0 ${(y * 0.12).toFixed(1)}px`;
         if (bouquet) bouquet.style.translate = `0 ${(y * -0.08).toFixed(1)}px`;

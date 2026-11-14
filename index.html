@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
 
@@ -28,22 +28,33 @@
 
   <main id="top">
 
-    <!-- 1. HERO · editorial: huge type over a colour block and a cut-out bouquet -->
-    <section class="hero">
-      <div class="hero__block" aria-hidden="true"></div>
-      <h1 class="hero__title" aria-label="Million Roses">
-        <span class="hero__w hero__w--1">Million</span>
-        <span class="hero__w hero__w--2"><em>Roses.</em></span>
-      </h1>
-      <img class="hero__bouquet" src="assets/cut-blush.webp" alt="Blush Peony and Delphinium bouquet from the Million Roses store">
-      <img class="hero__stem" src="assets/cut-allium.webp" alt="" aria-hidden="true">
-      <aside class="hero__meta mono">
-        <p>Shopify case study</p>
-        <p>Design &amp; development</p>
-        <p>Yerevan · 2026</p>
-      </aside>
-      <p class="hero__lead">A trilingual flower boutique where every section was designed to <em>sell, build trust and tell the brand story.</em></p>
-      <a class="hero__scroll mono" href="#role">Scroll ↓</a>
+    <!-- 1. HERO: big laptop + phone (the original hero) -->
+    <section class="ohero">
+      <div class="ohero__text">
+        <p class="eyebrow reveal">Shopify case study · Design &amp; development · 2026</p>
+        <h1 class="ohero__title"><span class="line"><span>Million <em>Roses.</em></span></span></h1>
+        <p class="ohero__lead reveal">A trilingual flower boutique for Yerevan, where every section was designed to sell, build trust and tell the brand story.</p>
+      </div>
+      <div class="studio" aria-hidden="true">
+        <div class="laptop" data-tilt>
+          <div class="laptop__lid">
+            <div class="laptop__screen">
+              <video src="assets/site-desktop.mp4" poster="assets/site-desktop-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
+          <div class="laptop__base"><span></span></div>
+        </div>
+        <div class="ophone">
+          <div class="ophone__notch"></div>
+          <video src="assets/site-mobile.mp4" poster="assets/site-mobile-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+      </div>
+      <ul class="ohero__stats">
+        <li class="reveal"><b><span data-count="15">0</span>+</b>custom Liquid sections</li>
+        <li class="reveal"><b><span data-count="3">0</span></b>languages: HY · RU · EN</li>
+        <li class="reveal"><b><span data-count="3">0</span></b>integrated apps</li>
+        <li class="reveal"><b><span data-count="100">0</span>%</b>responsive</li>
+      </ul>
     </section>
 
     <!-- 2. ROLE · a perks-style strip: what I did -->
@@ -51,7 +62,7 @@
       <ul class="role__list">
         <li class="reveal"><span class="mono">01</span><b>Strategy</b>Every section has one job: sell, build trust or market.</li>
         <li class="reveal"><span class="mono">02</span><b>Design</b>Palette, type and layouts for a calm, premium mood.</li>
-        <li class="reveal"><span class="mono">03</span><b>Liquid code</b><span data-count="15">0</span>+ custom sections in Shopify's Dawn theme.</li>
+        <li class="reveal"><span class="mono">03</span><b>Liquid code</b>15+ custom sections in Shopify's Dawn theme.</li>
         <li class="reveal"><span class="mono">04</span><b>Launch</b>3 languages, 3 apps, tested on desktop and mobile.</li>
       </ul>
     </section>
@@ -64,11 +75,11 @@
       </header>
       <div class="mosaic wrap">
         <figure class="tile tile--home rise">
-          <video src="assets/site-desktop.mp4" poster="assets/fresh-home.jpg" muted loop playsinline preload="none" aria-label="The home page scrolling"></video>
+          <img src="assets/fresh-home.jpg" alt="Million Roses home page hero" loading="lazy">
           <figcaption><small class="mono">Home</small>First impression</figcaption>
         </figure>
         <figure class="tile tile--phone rise">
-          <video src="assets/site-mobile.mp4" poster="assets/fresh-m-home.jpg" muted loop playsinline preload="none" aria-label="The home page on a phone"></video>
+          <img src="assets/fresh-m-product.jpg" alt="Product page on a phone" loading="lazy">
           <figcaption><small class="mono">Mobile</small>Built for thumbs</figcaption>
         </figure>
         <figure class="tile tile--coll rise">
@@ -208,6 +219,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=13"></script>
 </body>
 </html>
