@@ -277,7 +277,7 @@ const LINKS = {
       } else if (opened) v.pause();
     }), { threshold: 0.45 }).observe(sdFrame);
   }
-  // Torn-paper reveal: the jagged mask grows from a small tear to the full frame while scrolling
+  // Soft reveal: the frame fades in from a blur, then gently widens to full size while scrolling
   const sdClip = sdFrame && sdFrame.querySelector(".sd__clip");
   const sdVid = sdClip && sdClip.querySelector("video");
   const renderSd = () => {
@@ -287,10 +287,12 @@ const LINKS = {
     if (r.bottom < 0 || r.top > vh) return;
     // 0 when the frame's top enters the screen, 1 when the frame is centred
     const end = Math.max(0, (vh - r.height) / 2);
-    const t = clamp((vh * 0.92 - r.top) / (vh * 0.92 - end));
+    const t = clamp((vh * 0.95 - r.top) / (vh * 0.95 - end));
     const e = t * t * (3 - 2 * t);
-    sdClip.style.setProperty("--ms", (20 + 220 * e).toFixed(1) + "%");
-    sdVid.style.transform = `scale(${(1.08 - 0.08 * e).toFixed(4)})`;
+    if (t > 0.02) sdFrame.classList.add("is-seen");
+    const k = 1 - e;
+    sdClip.style.clipPath = `inset(${(4 * k).toFixed(2)}% ${(6 * k).toFixed(2)}% ${(4 * k).toFixed(2)}% ${(6 * k).toFixed(2)}% round ${(6 + 16 * k).toFixed(1)}px)`;
+    sdVid.style.transform = `scale(${(1 + 0.05 * k).toFixed(4)})`;
   };
 
   // Story: picture blooms open, small photos and the badge arrive from different sides
