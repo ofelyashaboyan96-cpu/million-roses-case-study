@@ -129,14 +129,23 @@ const LINKS = {
   const tabs = [...document.querySelectorAll(".tabs button")];
   const shots = [...document.querySelectorAll(".langs__stage img")];
   let langTimer = null;
+  const chip = document.querySelector("[data-lang-chip]");
+  const names = { hy: "Հայերեն", ru: "Русский", en: "English" };
   const setLang = (lang) => {
     tabs.forEach((t) => t.setAttribute("aria-selected", t.dataset.lang === lang));
-    shots.forEach((s) => s.classList.toggle("is-on", s.dataset.lang === lang));
+    shots.forEach((s) => {
+      const on = s.dataset.lang === lang;
+      s.classList.toggle("was-on", !on && s.classList.contains("is-on"));
+      if (!on) s.classList.remove("is-on");
+    });
+    const next = shots.find((s) => s.dataset.lang === lang);
+    if (next && !next.classList.contains("is-on")) { next.classList.remove("was-on"); void next.offsetWidth; next.classList.add("is-on"); }
+    if (chip) { chip.classList.add("is-swap"); setTimeout(() => { chip.textContent = names[lang]; chip.classList.remove("is-swap"); }, 350); }
   };
   tabs.forEach((t) => t.addEventListener("click", () => { clearInterval(langTimer); setLang(t.dataset.lang); }));
   if (tabs.length && !reduceMotion) {
     let i = 0;
-    langTimer = setInterval(() => { i = (i + 1) % tabs.length; setLang(tabs[i].dataset.lang); }, 2800);
+    langTimer = setInterval(() => { i = (i + 1) % tabs.length; setLang(tabs[i].dataset.lang); }, 3600);
   }
 
   // Product notes <-> pins highlight each other

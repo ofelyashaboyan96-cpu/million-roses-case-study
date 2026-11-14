@@ -12,8 +12,8 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=25">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
 
@@ -75,8 +75,7 @@
       <div class="wrap story__grid">
         <div class="story__media" data-story>
           <div class="story__main"><img src="assets/story-bag.jpg" alt="A Million Roses gift bag with hydrangea and lisianthus, tagged with the brand label" loading="lazy"></div>
-          <img class="story__s story__s--1" src="assets/story-grow-1.jpg" alt="A florist picking a zinnia in the garden" loading="lazy">
-          <img class="story__s story__s--2" src="assets/story-grow-2.jpg" alt="Planting flowers in warm evening light" loading="lazy">
+          <span class="story__frame" aria-hidden="true"></span>
           <svg class="story__badge" viewBox="0 0 200 200" aria-hidden="true">
             <defs><path id="badgeArc" d="M100 100 m-74 0 a74 74 0 1 1 148 0 a74 74 0 1 1 -148 0"/></defs>
             <circle cx="100" cy="100" r="98" fill="#1F3A2B"/>
@@ -186,7 +185,7 @@
     </section>
 
     <!-- FEATURE · editorial product spread, 3D cut-out -->
-    <section class="feat" aria-label="Featured product: Blooming Love">
+    <section class="feat" id="feat" aria-label="Featured product: Blooming Love">
       <div class="feat__card reveal">
         <header class="feat__head"><span>Signature basket</span><nav aria-hidden="true"><span>Bouquets</span><span>Baskets</span><span>Plants</span></nav></header>
         <div class="feat__left">
@@ -199,7 +198,7 @@
             </div>
           </div>
           <p class="feat__note">Every product page tells the story the same way: one bold sentence, then What&rsquo;s inside, Size and Care, in Armenian, Russian and English.</p>
-          <h3 class="feat__title fly">Blooming Love</h3>
+          <h3 class="feat__title fly">Blooming <em>Love</em></h3>
         </div>
         <div class="feat__photo">
           <div class="feat__frame"><img src="assets/bl-3.jpg" alt="Blooming Love flowers in soft daylight" loading="lazy"></div>
@@ -251,10 +250,11 @@
         <figure class="browser langs__shot rise">
           <div class="browser__bar"><i></i><i></i><i></i></div>
           <div class="langs__stage">
-            <img class="is-on" data-lang="hy" src="assets/lang-hy.jpg" alt="Home page in Armenian" loading="lazy">
-            <img data-lang="ru" src="assets/lang-ru.jpg" alt="Home page in Russian" loading="lazy">
-            <img data-lang="en" src="assets/lang-en.jpg" alt="Home page in English" loading="lazy">
+            <img class="is-on" data-lang="hy" src="assets/lang-hy.jpg" alt="Flower care section in Armenian" loading="lazy">
+            <img data-lang="ru" src="assets/lang-ru.jpg" alt="Flower care section in Russian" loading="lazy">
+            <img data-lang="en" src="assets/lang-en.jpg" alt="Flower care section in English" loading="lazy">
           </div>
+          <span class="langs__chip" data-lang-chip>Հայերեն</span>
         </figure>
       </div>
     </section>
@@ -299,6 +299,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=25"></script>
+  <script src="script.js?v=26"></script>
 </body>
 </html>
