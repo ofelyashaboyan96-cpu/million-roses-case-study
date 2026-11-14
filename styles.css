@@ -133,8 +133,8 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
 .sd__h em{color:var(--sage)}
 .sd__intro{color:var(--muted);font-size:16px;max-width:460px}
 .sd__frame{position:relative;margin:0 auto;max-width:1240px}
-.sd__clip{position:relative;overflow:hidden;border-radius:6px;background:#c9a77a;clip-path:inset(0 7% 0 7% round 18px);will-change:clip-path}
-.sd__clip video{display:block;width:100%;aspect-ratio:2152/1068;object-fit:cover;transform:scale(1.3);transform-origin:52% 45%;will-change:transform}
+.sd__clip{--ms:20%;position:relative;overflow:hidden;border-radius:6px;background:transparent;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 preserveAspectRatio=%22none%22%3E%3Cpath d=%22M95.43 50.00 L97.72 51.10 L96.73 52.16 L94.51 53.09 L95.59 54.23 L97.05 55.46 L95.11 56.30 L97.44 57.75 L95.66 58.55 L94.54 59.41 L95.31 60.68 L94.76 61.66 L97.00 63.41 L96.23 64.37 L95.54 65.33 L95.00 66.32 L96.48 68.10 L95.26 68.86 L95.65 70.29 L96.68 72.07 L94.82 72.50 L95.61 74.26 L96.11 75.94 L97.66 78.32 L95.77 78.68 L96.14 80.46 L95.16 81.38 L95.07 82.94 L94.02 83.81 L93.08 84.76 L93.17 86.58 L91.31 86.75 L89.27 86.67 L89.96 89.15 L89.36 90.48 L87.05 90.01 L84.94 89.61 L84.17 90.69 L84.19 92.80 L81.64 91.66 L82.33 94.81 L79.56 93.16 L78.70 94.19 L76.28 92.73 L75.07 93.12 L74.72 95.06 L72.10 92.75 L70.89 92.99 L70.10 94.14 L68.04 92.38 L67.26 93.53 L66.68 95.35 L64.95 94.02 L64.51 96.50 L62.77 94.85 L61.57 94.91 L60.41 95.08 L58.82 93.11 L57.67 92.96 L56.56 92.95 L55.43 92.77 L54.31 92.54 L53.37 94.35 L52.19 93.24 L51.10 93.58 L50.00 95.07 L48.89 93.90 L47.80 93.48 L46.71 93.28 L45.43 95.05 L44.40 94.09 L43.09 95.29 L41.88 95.47 L40.87 94.60 L39.93 93.58 L38.45 94.83 L37.23 94.85 L36.55 93.13 L34.56 95.46 L33.49 94.89 L32.29 94.67 L31.29 93.96 L30.40 93.03 L29.08 93.07 L26.67 95.14 L25.31 94.99 L23.88 94.93 L23.83 92.56 L22.52 92.31 L20.29 93.38 L18.42 93.76 L17.44 92.86 L17.42 90.79 L14.13 92.73 L13.22 91.69 L13.49 89.42 L11.96 89.13 L9.14 90.04 L9.76 87.57 L7.96 87.40 L8.94 84.80 L5.95 85.55 L7.65 82.53 L4.60 83.18 L6.13 80.49 L4.31 80.17 L4.57 78.47 L3.43 77.67 L3.44 76.19 L5.39 73.72 L5.02 72.58 L3.99 71.76 L4.46 70.24 L2.83 69.66 L4.24 67.82 L2.77 67.13 L2.71 65.92 L3.93 64.32 L5.57 62.68 L3.20 62.19 L5.06 60.59 L3.28 59.88 L4.56 58.51 L3.82 57.54 L5.27 56.25 L4.81 55.25 L3.12 54.35 L3.80 53.21 L2.67 52.19 L3.64 51.07 L3.96 50.00 L4.15 48.94 L4.07 47.87 L3.36 46.76 L2.58 45.60 L3.81 44.64 L2.91 43.42 L5.22 42.68 L5.38 41.64 L5.38 40.57 L3.09 38.94 L5.13 38.31 L3.51 36.73 L2.80 35.33 L4.95 34.84 L4.40 33.46 L2.53 31.51 L5.23 31.35 L4.15 29.62 L5.24 28.83 L2.38 26.10 L3.91 25.48 L4.23 24.25 L6.18 23.97 L4.13 21.25 L6.56 21.32 L7.09 20.18 L6.79 18.42 L6.81 16.82 L6.20 14.66 L8.87 15.15 L8.41 13.00 L9.25 11.96 L8.80 9.63 L11.15 10.04 L13.74 10.85 L14.95 10.27 L15.24 8.60 L16.32 7.83 L18.31 8.28 L19.10 7.18 L21.35 8.17 L22.81 8.13 L23.66 7.17 L24.22 5.66 L26.05 6.34 L27.35 6.18 L29.44 7.67 L29.95 5.98 L31.35 6.18 L33.06 7.28 L33.91 6.26 L34.71 5.00 L36.27 6.00 L37.06 4.53 L38.40 4.98 L39.74 5.59 L41.03 6.19 L42.38 7.32 L43.40 6.75 L44.58 7.28 L45.42 4.86 L46.71 6.67 L47.81 6.64 L48.91 7.05 L50.00 6.73 L51.15 4.54 L52.19 6.79 L53.30 6.59 L54.30 7.54 L55.58 6.08 L56.58 6.92 L57.58 7.53 L58.75 7.27 L59.99 6.75 L61.12 6.83 L62.55 5.92 L63.87 5.54 L65.33 4.87 L65.97 6.58 L66.99 7.15 L69.66 3.82 L70.52 4.93 L71.63 5.47 L72.04 7.36 L73.96 6.33 L75.86 5.52 L76.85 6.34 L78.43 6.22 L79.10 7.52 L81.83 5.89 L82.34 7.42 L83.86 7.62 L86.24 6.84 L86.77 8.31 L87.45 9.57 L87.32 11.61 L89.39 11.40 L91.17 11.56 L92.08 12.56 L92.15 14.29 L92.78 15.48 L94.23 16.02 L94.68 17.34 L93.57 19.72 L94.07 20.90 L94.03 22.41 L95.74 22.83 L95.94 24.16 L95.58 25.76 L97.57 26.12 L94.77 28.83 L98.25 28.55 L96.88 30.46 L95.74 32.19 L95.00 33.68 L95.02 34.85 L94.81 36.07 L97.44 36.46 L97.02 37.76 L97.24 38.86 L95.13 40.46 L95.96 41.39 L95.97 42.49 L95.36 43.66 L95.50 44.72 L98.82 45.47 L97.09 46.73 L97.37 47.81 L97.29 48.91Z%22 fill=%22%23000%22/%3E%3C/svg%3E") center/var(--ms) var(--ms) no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 preserveAspectRatio=%22none%22%3E%3Cpath d=%22M95.43 50.00 L97.72 51.10 L96.73 52.16 L94.51 53.09 L95.59 54.23 L97.05 55.46 L95.11 56.30 L97.44 57.75 L95.66 58.55 L94.54 59.41 L95.31 60.68 L94.76 61.66 L97.00 63.41 L96.23 64.37 L95.54 65.33 L95.00 66.32 L96.48 68.10 L95.26 68.86 L95.65 70.29 L96.68 72.07 L94.82 72.50 L95.61 74.26 L96.11 75.94 L97.66 78.32 L95.77 78.68 L96.14 80.46 L95.16 81.38 L95.07 82.94 L94.02 83.81 L93.08 84.76 L93.17 86.58 L91.31 86.75 L89.27 86.67 L89.96 89.15 L89.36 90.48 L87.05 90.01 L84.94 89.61 L84.17 90.69 L84.19 92.80 L81.64 91.66 L82.33 94.81 L79.56 93.16 L78.70 94.19 L76.28 92.73 L75.07 93.12 L74.72 95.06 L72.10 92.75 L70.89 92.99 L70.10 94.14 L68.04 92.38 L67.26 93.53 L66.68 95.35 L64.95 94.02 L64.51 96.50 L62.77 94.85 L61.57 94.91 L60.41 95.08 L58.82 93.11 L57.67 92.96 L56.56 92.95 L55.43 92.77 L54.31 92.54 L53.37 94.35 L52.19 93.24 L51.10 93.58 L50.00 95.07 L48.89 93.90 L47.80 93.48 L46.71 93.28 L45.43 95.05 L44.40 94.09 L43.09 95.29 L41.88 95.47 L40.87 94.60 L39.93 93.58 L38.45 94.83 L37.23 94.85 L36.55 93.13 L34.56 95.46 L33.49 94.89 L32.29 94.67 L31.29 93.96 L30.40 93.03 L29.08 93.07 L26.67 95.14 L25.31 94.99 L23.88 94.93 L23.83 92.56 L22.52 92.31 L20.29 93.38 L18.42 93.76 L17.44 92.86 L17.42 90.79 L14.13 92.73 L13.22 91.69 L13.49 89.42 L11.96 89.13 L9.14 90.04 L9.76 87.57 L7.96 87.40 L8.94 84.80 L5.95 85.55 L7.65 82.53 L4.60 83.18 L6.13 80.49 L4.31 80.17 L4.57 78.47 L3.43 77.67 L3.44 76.19 L5.39 73.72 L5.02 72.58 L3.99 71.76 L4.46 70.24 L2.83 69.66 L4.24 67.82 L2.77 67.13 L2.71 65.92 L3.93 64.32 L5.57 62.68 L3.20 62.19 L5.06 60.59 L3.28 59.88 L4.56 58.51 L3.82 57.54 L5.27 56.25 L4.81 55.25 L3.12 54.35 L3.80 53.21 L2.67 52.19 L3.64 51.07 L3.96 50.00 L4.15 48.94 L4.07 47.87 L3.36 46.76 L2.58 45.60 L3.81 44.64 L2.91 43.42 L5.22 42.68 L5.38 41.64 L5.38 40.57 L3.09 38.94 L5.13 38.31 L3.51 36.73 L2.80 35.33 L4.95 34.84 L4.40 33.46 L2.53 31.51 L5.23 31.35 L4.15 29.62 L5.24 28.83 L2.38 26.10 L3.91 25.48 L4.23 24.25 L6.18 23.97 L4.13 21.25 L6.56 21.32 L7.09 20.18 L6.79 18.42 L6.81 16.82 L6.20 14.66 L8.87 15.15 L8.41 13.00 L9.25 11.96 L8.80 9.63 L11.15 10.04 L13.74 10.85 L14.95 10.27 L15.24 8.60 L16.32 7.83 L18.31 8.28 L19.10 7.18 L21.35 8.17 L22.81 8.13 L23.66 7.17 L24.22 5.66 L26.05 6.34 L27.35 6.18 L29.44 7.67 L29.95 5.98 L31.35 6.18 L33.06 7.28 L33.91 6.26 L34.71 5.00 L36.27 6.00 L37.06 4.53 L38.40 4.98 L39.74 5.59 L41.03 6.19 L42.38 7.32 L43.40 6.75 L44.58 7.28 L45.42 4.86 L46.71 6.67 L47.81 6.64 L48.91 7.05 L50.00 6.73 L51.15 4.54 L52.19 6.79 L53.30 6.59 L54.30 7.54 L55.58 6.08 L56.58 6.92 L57.58 7.53 L58.75 7.27 L59.99 6.75 L61.12 6.83 L62.55 5.92 L63.87 5.54 L65.33 4.87 L65.97 6.58 L66.99 7.15 L69.66 3.82 L70.52 4.93 L71.63 5.47 L72.04 7.36 L73.96 6.33 L75.86 5.52 L76.85 6.34 L78.43 6.22 L79.10 7.52 L81.83 5.89 L82.34 7.42 L83.86 7.62 L86.24 6.84 L86.77 8.31 L87.45 9.57 L87.32 11.61 L89.39 11.40 L91.17 11.56 L92.08 12.56 L92.15 14.29 L92.78 15.48 L94.23 16.02 L94.68 17.34 L93.57 19.72 L94.07 20.90 L94.03 22.41 L95.74 22.83 L95.94 24.16 L95.58 25.76 L97.57 26.12 L94.77 28.83 L98.25 28.55 L96.88 30.46 L95.74 32.19 L95.00 33.68 L95.02 34.85 L94.81 36.07 L97.44 36.46 L97.02 37.76 L97.24 38.86 L95.13 40.46 L95.96 41.39 L95.97 42.49 L95.36 43.66 L95.50 44.72 L98.82 45.47 L97.09 46.73 L97.37 47.81 L97.29 48.91Z%22 fill=%22%23000%22/%3E%3C/svg%3E") center/var(--ms) var(--ms) no-repeat}
+.sd__clip video{display:block;width:100%;aspect-ratio:2152/1068;object-fit:cover;transform:scale(1.08);transform-origin:52% 45%;will-change:transform}
 .sd__veil{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(40,28,16,.32),rgba(40,28,16,.08) 70%,rgba(40,28,16,0));opacity:0;transition:opacity 1.2s ease}
 .sd__over{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 6%;pointer-events:none}
 .sd__over>*{opacity:0;filter:blur(8px);transform:translateY(14px);transition:opacity 1s ease,filter 1.1s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
@@ -162,7 +162,7 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
   .sd__timer b{font-size:30px}
 }
 @media (prefers-reduced-motion:reduce){
-  .sd__clip{clip-path:none}.sd__clip video{transform:none}
+  .sd__clip{-webkit-mask:none;mask:none}.sd__clip video{transform:none}
   .sd__over>*{opacity:1;filter:none;transform:none;transition:none}.sd__veil{opacity:1;transition:none}
 }
 
@@ -434,4 +434,89 @@ body.is-loaded .hero__bouquet{transition-delay:.25s}body.is-loaded .hero__lead{t
 .feat__cut{will-change:translate,rotate,opacity}
 @media (prefers-reduced-motion:reduce){
   .fw{opacity:1;filter:none;transform:none;transition:none}
+}
+
+/* ---------- story: Why Million Roses? ---------- */
+.story{position:relative;background:var(--cream);padding:var(--sec) 0;overflow:hidden}
+.story__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
+.story__media{position:relative;width:min(100%,460px);margin:40px auto 60px}
+.story__main{border-radius:6px;overflow:hidden;clip-path:circle(0% at 50% 62%);transition:clip-path 1.8s cubic-bezier(.6,.05,.2,1)}
+.story__main img{width:100%;aspect-ratio:3/4;object-fit:cover;transform:scale(1.14);transition:transform 2.6s cubic-bezier(.2,.7,.2,1)}
+.story__s{position:absolute;width:38%;border-radius:4px;box-shadow:0 26px 50px -24px rgba(31,58,43,.45);opacity:0;transition:opacity 1s ease,transform 1.6s cubic-bezier(.2,.7,.2,1),filter 1.2s ease;filter:blur(6px)}
+.story__s--1{left:-22%;top:-7%;aspect-ratio:2/3;object-fit:cover;transform:translate(-90px,-30px) rotate(-12deg)}
+.story__s--2{right:-20%;bottom:-9%;aspect-ratio:3/4;object-fit:cover;transform:translate(80px,90px) rotate(10deg)}
+.story__badge{position:absolute;right:-9%;top:-9%;width:30%;opacity:0;transform:scale(.4) rotate(-80deg);transition:opacity .8s ease,transform 1.5s cubic-bezier(.2,.9,.25,1.15)}
+.story__badge text{font-family:var(--sans);fill:#F6F2E9;text-anchor:middle}
+.story__ring text{font-size:12.4px;letter-spacing:.2em;fill:#E2C68F;text-anchor:start}
+.story__ring{transform-box:view-box;transform-origin:100px 100px;animation:ringSpin 38s linear infinite}
+.story__b1{font-size:12px;letter-spacing:.24em}
+.story__b2{font-family:var(--serif)!important;font-size:24px;letter-spacing:.06em}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.story__media.is-in .story__main{clip-path:circle(80% at 50% 62%)}
+.story__media.is-in .story__main img{transform:none}
+.story__media.is-in .story__s{opacity:1;filter:none}
+.story__media.is-in .story__s--1{transform:rotate(-4deg);transition-delay:.7s}
+.story__media.is-in .story__s--2{transform:rotate(3deg);transition-delay:1s}
+.story__media.is-in .story__badge{opacity:1;transform:none;transition-delay:1.4s}
+.story__title{font-family:var(--serif);font-weight:400;font-size:clamp(52px,6.4vw,100px);line-height:.95;letter-spacing:-.015em;color:var(--green);margin-bottom:28px}
+.stw{display:inline-block;opacity:0;filter:blur(12px);transition:opacity 1s ease,filter 1.2s ease,transform 1.5s cubic-bezier(.2,.7,.2,1)}
+.stw--l{transform:translateX(-120px)}
+.stw--r{display:block;font-style:italic;color:var(--sage);transform:translateX(140px);transition-delay:.25s}
+.stw--b{transform:translateY(70px);transition-delay:.5s}
+.story__title.is-in .stw{opacity:1;filter:none;transform:none}
+.story__lead{font-family:var(--serif);font-size:clamp(22px,2vw,28px);line-height:1.3;color:var(--green);max-width:500px;margin-bottom:22px}
+.story__lead em{color:var(--deep-gold)}
+.story__p{color:var(--ink);max-width:480px;margin-bottom:14px}
+.story__sign{margin-top:26px;color:var(--deep-gold);display:flex;align-items:center;gap:14px}
+.story__sign::before{content:"";width:46px;height:1px;background:var(--gold)}
+
+/* ---------- gold line-drawn stems ---------- */
+.coll,.cta{position:relative}
+.stem{position:absolute;width:clamp(70px,7vw,110px);height:auto;pointer-events:none;overflow:visible;z-index:0}
+.stem path{fill:none;stroke:var(--gold);stroke-width:1.3;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+.stem--story{left:clamp(4px,1.6vw,28px);top:clamp(30px,5vw,70px);opacity:.75}
+.stem--coll{right:clamp(4px,2vw,40px);top:clamp(40px,5vw,80px);opacity:.75}
+.stem--cta{left:clamp(10px,4vw,70px);bottom:0;opacity:.55}
+.story .wrap,.coll .wrap,.cta .wrap{position:relative;z-index:1}
+
+/* ---------- mobile: one big iPhone ---------- */
+.mobile__grid{display:grid;grid-template-columns:1fr auto;gap:clamp(40px,7vw,120px);align-items:center}
+.mobile__facts{list-style:none;margin-top:36px;max-width:480px}
+.mobile__facts li{padding:18px 0;border-top:1px solid rgba(31,58,43,.12);color:var(--ink);font-size:15px}
+.mobile__facts li:last-child{border-bottom:1px solid rgba(31,58,43,.12)}
+.mobile__facts .mono{display:block;color:var(--deep-gold);margin-bottom:4px}
+.mobile__stage{position:relative;padding:20px 30px 50px;justify-self:center}
+.mobile__stage::before{content:"";position:absolute;left:50%;top:46%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,var(--cream) 0 55%,rgba(246,242,233,0) 70%);z-index:0}
+.iphone{position:relative;z-index:1;width:clamp(250px,24vw,340px);aspect-ratio:640/1386;border-radius:clamp(40px,4vw,54px);padding:clamp(9px,.9vw,12px);background:linear-gradient(145deg,#2c2c2e,#0e0e10 45%,#26262a);box-shadow:inset 0 0 0 1.5px #4a4a4e,0 50px 80px -40px rgba(31,58,43,.55),0 20px 30px -20px rgba(31,58,43,.35);will-change:transform}
+.iphone video{width:100%;height:100%;object-fit:cover;border-radius:clamp(31px,3.1vw,42px);background:var(--cream)}
+.iphone::before{content:"";position:absolute;z-index:2;top:calc(clamp(9px,.9vw,12px) + 10px);left:50%;width:31%;height:clamp(20px,2vw,27px);transform:translateX(-50%);background:#000;border-radius:20px}
+.iphone::after{content:"";position:absolute;right:-3px;top:24%;width:3px;height:12%;border-radius:0 3px 3px 0;background:#2a2a2d}
+.mobile__shadow{position:absolute;z-index:0;left:50%;bottom:22px;width:62%;height:26px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(31,58,43,.28),rgba(31,58,43,0) 70%);filter:blur(4px)}
+
+/* ---------- help list on the green CTA ---------- */
+.help{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1100px;margin:54px auto 0;text-align:left}
+.help li{padding:24px 24px 6px;border-left:1px solid rgba(246,242,233,.16);font-size:14.5px;line-height:1.55;color:rgba(246,242,233,.72)}
+.help li:first-child{border-left:0}
+.help .mono{display:block;color:var(--gold);margin-bottom:12px}
+.help b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.15;color:var(--cream);margin-bottom:8px}
+
+@media (max-width:989px){
+  .help{grid-template-columns:1fr 1fr}
+  .help li:nth-child(3){border-left:0}
+}
+@media (max-width:749px){
+  .story__grid{grid-template-columns:1fr;gap:30px}
+  .story__media{width:72%;margin:50px auto 60px}
+  .story__s--1{left:-16%}.story__s--2{right:-18%}.story__badge{right:-12%}
+  .stem--story,.stem--coll{width:56px;opacity:.5}
+  .stem--story{top:12px}
+  .mobile__grid{grid-template-columns:1fr}
+  .iphone{width:min(72vw,300px)}
+  .help{grid-template-columns:1fr;margin-top:36px}
+  .help li{border-left:0;border-top:1px solid rgba(246,242,233,.16);padding:20px 0 4px}
+}
+@media (prefers-reduced-motion:reduce){
+  .story__main,.story__main img,.story__s,.story__badge,.stw{clip-path:none!important;transform:none!important;opacity:1!important;filter:none!important;transition:none!important}
+  .story__ring{animation:none}
+  .stem path{stroke-dashoffset:0}
 }

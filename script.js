@@ -268,6 +268,7 @@ const LINKS = {
       } else if (opened) v.pause();
     }), { threshold: 0.45 }).observe(sdFrame);
   }
+  // Torn-paper reveal: the jagged mask grows from a small tear to the full frame while scrolling
   const sdClip = sdFrame && sdFrame.querySelector(".sd__clip");
   const sdVid = sdClip && sdClip.querySelector("video");
   const renderSd = () => {
@@ -276,11 +277,43 @@ const LINKS = {
     const r = sdFrame.getBoundingClientRect();
     if (r.bottom < 0 || r.top > vh) return;
     // 0 when the frame's top enters the screen, 1 when the frame is centred
-    const t = clamp((vh - r.top) / (vh * 0.5 + r.height * 0.5));
+    const end = Math.max(0, (vh - r.height) / 2);
+    const t = clamp((vh * 0.92 - r.top) / (vh * 0.92 - end));
+    const e = t * t * (3 - 2 * t);
+    sdClip.style.setProperty("--ms", (20 + 220 * e).toFixed(1) + "%");
+    sdVid.style.transform = `scale(${(1.08 - 0.08 * e).toFixed(4)})`;
+  };
+
+  // Story: picture blooms open, small photos and the badge arrive from different sides
+  document.querySelectorAll("[data-story], [data-story-title]").forEach((el) => revealObs.observe(el));
+
+  // Gold stems draw themselves as their section scrolls in
+  const stems = [...document.querySelectorAll("[data-draw]")].map((svg) => ({ svg, paths: [...svg.querySelectorAll("path")] }));
+  const stemSegs = [[0, .5], [.32, .72], [.44, .84], [.58, 1], [.66, 1]];
+  const renderStems = () => {
+    if (reduceMotion) return;
+    const vh = window.innerHeight;
+    stems.forEach(({ svg, paths }) => {
+      const r = svg.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const t = clamp((vh - r.top) / (vh * 0.75));
+      paths.forEach((p, i) => {
+        const [a, b] = stemSegs[i] || [0, 1];
+        p.style.strokeDashoffset = (1 - clamp((t - a) / (b - a))).toFixed(3);
+      });
+    });
+  };
+
+  // Big iPhone settles upright as it scrolls into view
+  const iphone = document.querySelector("[data-iphone]");
+  const renderPhone = () => {
+    if (!iphone || reduceMotion) return;
+    const vh = window.innerHeight;
+    const r = iphone.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > vh) return;
+    const t = clamp((vh - r.top) / (vh * 0.8));
     const e = 1 - Math.pow(1 - t, 3);
-    sdVid.style.transform = `scale(${(1.3 - 0.3 * e).toFixed(4)})`;
-    const side = (7 * (1 - e)).toFixed(2);
-    sdClip.style.clipPath = `inset(0 ${side}% 0 ${side}% round ${(6 + 12 * (1 - e)).toFixed(1)}px)`;
+    iphone.style.transform = `perspective(1400px) translateY(${(60 * (1 - e)).toFixed(1)}px) rotateX(${(14 * (1 - e)).toFixed(2)}deg) rotateZ(${(-5 * (1 - e)).toFixed(2)}deg)`;
   };
 
   // Basket flies in from the right while the card scrolls into place
@@ -348,6 +381,8 @@ const LINKS = {
     renderStory();
     renderSd();
     renderBasket();
+    renderPhone();
+    renderStems();
     ticking = false;
   };
   window.addEventListener("scroll", () => {
