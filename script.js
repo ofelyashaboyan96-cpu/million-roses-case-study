@@ -79,10 +79,10 @@ const LINKS = {
   const featCard = document.querySelector(".feat__card");
   if (featCard) revealObs.observe(featCard);
 
-  // Live same-day countdown: orders until 16:00 Yerevan time (UTC+4)
-  const clockEl = document.querySelector("[data-timer]");
-  const noteEl = document.querySelector("[data-timer-note]");
-  if (clockEl) {
+  // Live same-day countdown: orders until 16:00 Yerevan time (UTC+4); after that the banner talks about tomorrow
+  const hEl = document.querySelector("[data-h]"), mEl = document.querySelector("[data-m]"), sEl = document.querySelector("[data-s]");
+  if (hEl) {
+    const aEl = document.querySelector("[data-sd-a]"), bEl = document.querySelector("[data-sd-b]"), btn = document.querySelector("[data-sd-btn]");
     const pad = (n) => String(n).padStart(2, "0");
     const tick = () => {
       const now = new Date();
@@ -91,8 +91,10 @@ const LINKS = {
       const tomorrow = yv >= cut;
       if (tomorrow) cut.setDate(cut.getDate() + 1);
       const s = Math.floor((cut - yv) / 1000);
-      clockEl.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}`;
-      if (noteEl) noteEl.textContent = tomorrow ? "left to order for tomorrow's delivery" : "left to order for delivery today";
+      hEl.textContent = pad(Math.floor(s / 3600)); mEl.textContent = pad(Math.floor(s / 60) % 60); sEl.textContent = pad(s % 60);
+      aEl.textContent = tomorrow ? "Order now," : "Order today,";
+      bEl.textContent = tomorrow ? "tomorrow." : "today.";
+      btn.textContent = tomorrow ? "Order for tomorrow" : "Order for today";
     };
     tick(); setInterval(tick, 1000);
   }
@@ -246,17 +248,13 @@ const LINKS = {
   }
 
   // Same-day: title writes itself, then the frame opens like paper and the tear plays from the start
-  const sdTitle = document.querySelector("[data-sdtitle]");
   const sdFrame = document.querySelector("[data-sdframe]");
-  if (sdTitle && sdFrame) {
+  if (sdFrame) {
     const v = sdFrame.querySelector("video");
     let opened = false;
     new IntersectionObserver((es, o) => es.forEach((e) => {
       if (e.isIntersecting) { v.preload = "auto"; v.load(); o.disconnect(); }
     }), { rootMargin: "600px 0px" }).observe(sdFrame);
-    new IntersectionObserver((es) => es.forEach((e) => {
-      if (e.isIntersecting) sdTitle.classList.add("is-in");
-    }), { threshold: 0.5 }).observe(sdTitle);
     new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) {
         if (!opened) {
@@ -270,7 +268,20 @@ const LINKS = {
       } else if (opened) v.pause();
     }), { threshold: 0.45 }).observe(sdFrame);
   }
-  const renderSd = () => {};
+  const sdClip = sdFrame && sdFrame.querySelector(".sd__clip");
+  const sdVid = sdClip && sdClip.querySelector("video");
+  const renderSd = () => {
+    if (!sdClip || reduceMotion) return;
+    const vh = window.innerHeight;
+    const r = sdFrame.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > vh) return;
+    // 0 when the frame's top enters the screen, 1 when the frame is centred
+    const t = clamp((vh - r.top) / (vh * 0.5 + r.height * 0.5));
+    const e = 1 - Math.pow(1 - t, 3);
+    sdVid.style.transform = `scale(${(1.3 - 0.3 * e).toFixed(4)})`;
+    const side = (7 * (1 - e)).toFixed(2);
+    sdClip.style.clipPath = `inset(0 ${side}% 0 ${side}% round ${(6 + 12 * (1 - e)).toFixed(1)}px)`;
+  };
 
   // Basket flies in from the right while the card scrolls into place
   const basket = document.querySelector(".feat__cut");

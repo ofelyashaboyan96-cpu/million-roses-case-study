@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=23">
+  <link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body>
 
@@ -67,27 +67,33 @@
       </ul>
     </section>
 
-    <!-- 4. SAME-DAY · title writes itself, the video frame opens like paper, the tear plays from the start -->
+    <!-- 4. SAME-DAY · the store banner rebuilt: video pulls back on scroll, text settles on top -->
     <section class="sameday" id="sameday">
       <div class="wrap">
         <header class="sd__head">
-          <p class="eyebrow reveal">Same-day delivery · Conversion</p>
-          <h2 class="sd__title" data-sdtitle><span class="sd__line" data-letters>Order by 16:00,</span><em class="sd__line" data-letters>delivered today.</em></h2>
+          <div>
+            <p class="eyebrow reveal">Same-day delivery · Conversion</p>
+            <h2 class="sd__h fly">The banner that answers <em>&ldquo;will it arrive today?&rdquo;</em></h2>
+          </div>
+          <p class="sd__intro reveal">Kraft paper tears open, the bouquet appears, and a quiet countdown in Yerevan time tells the buyer exactly how long they have. After 16:00 the words switch to tomorrow.</p>
         </header>
         <figure class="sd__frame" data-sdframe>
           <div class="sd__clip">
             <video data-src-d="assets/same-day.mp4" data-src-m="assets/same-day-m.mp4" data-poster-d="assets/same-day-poster.jpg" data-poster-m="assets/same-day-m-poster.jpg" data-manual muted playsinline preload="none" aria-label="Kraft paper tears open to reveal a bouquet"></video>
+            <span class="sd__veil"></span>
           </div>
-          <div class="clock" aria-live="off">
-            <span class="clock__label mono">Live · Yerevan time</span>
-            <b class="clock__time" data-timer>00:00:00</b>
-            <span class="clock__note" data-timer-note>left to order for delivery today</span>
+          <div class="sd__over">
+            <p class="sd__kicker">Same-day delivery · Yerevan</p>
+            <p class="sd__otitle"><span data-sd-a>Order today,</span> <em>delivered</em> <span data-sd-b>today.</span></p>
+            <div class="sd__timer" aria-live="off">
+              <span><b data-h>00</b><small>hours</small></span><i>:</i>
+              <span><b data-m>00</b><small>minutes</small></span><i>:</i>
+              <span><b data-s>00</b><small>seconds</small></span>
+            </div>
+            <a class="sd__btn" data-sd-btn href="https://ofelya-shaboyan-szkc1aey.myshopify.com/collections/all" target="_blank" rel="noopener">Order for today</a>
           </div>
         </figure>
-        <div class="sd__foot">
-          <p class="reveal">The first question of every gift buyer is &ldquo;will it arrive today?&rdquo;. The home banner answers it twice: kraft paper tears open to show the bouquet, and a live countdown in Yerevan time sits right on top.</p>
-          <span class="mono sd__cap reveal">Home page banner · real store video</span>
-        </div>
+        <p class="mono sd__cap reveal">Home page banner · real store video · live Yerevan time</p>
       </div>
     </section>
 
@@ -249,6 +255,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=23"></script>
+  <script src="script.js?v=24"></script>
 </body>
 </html>
