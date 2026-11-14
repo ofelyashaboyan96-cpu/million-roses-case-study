@@ -120,7 +120,7 @@ const LINKS = {
       else v.pause();
     });
   }, { threshold: 0.2 });
-  document.querySelectorAll("video").forEach((v) => videoObs.observe(v));
+  document.querySelectorAll("video:not([data-manual])").forEach((v) => videoObs.observe(v));
 
   // Language tabs (auto-rotate until someone clicks)
   const tabs = [...document.querySelectorAll(".tabs button")];
@@ -244,44 +244,32 @@ const LINKS = {
     desk.addEventListener("change", renderStory);
   }
 
-  // Same-day story: card grows to full screen, thumbnails drift away, title writes itself
-  const sd = document.querySelector("[data-sdstory]");
-  let renderSd = () => {};
-  if (sd) {
-    const track = sd.querySelector(".sd__track");
-    const media = sd.querySelector(".sd__media");
-    const shade = sd.querySelector(".sd__shade");
-    const intro = sd.querySelector(".sd__intro");
-    const over = sd.querySelector(".sd__over");
-    const thumbs = [...sd.querySelectorAll(".sd__thumb")];
-    const dirs = [[-1, -0.6], [1, -0.8], [-1, 0.7], [1, 0.6]];
-    const ease = (t) => 1 - Math.pow(1 - t, 3);
-    const seg = (p, a, b) => clamp((p - a) / (b - a));
-    if (reduceMotion) { sd.classList.add("is-static"); over.classList.add("is-on"); }
-    renderSd = () => {
-      if (reduceMotion) return;
-      const vh = window.innerHeight;
-      const r = track.getBoundingClientRect();
-      if (r.bottom < -vh || r.top > vh * 1.5) return;
-      const p = clamp(-r.top / (r.height - vh));
-      const m = window.innerWidth < 750;
-      const s0 = m ? [38, 22, 24, 22] : [34, 31, 18, 31];
-      const e = ease(seg(p, 0.04, 0.5));
-      const ins = s0.map((v) => (v * (1 - e)).toFixed(2) + "%").join(" ");
-      media.style.clipPath = `inset(${ins} round ${(8 * (1 - e)).toFixed(1)}px)`;
-      intro.style.opacity = 1 - seg(p, 0.04, 0.2);
-      intro.style.transform = `translateY(${(-40 * seg(p, 0.04, 0.24)).toFixed(1)}px)`;
-      const drift = ease(seg(p, 0.06, 0.42));
-      thumbs.forEach((t, i) => {
-        const [dx, dy] = dirs[i];
-        const float = Math.sin(p * 6 + i) * 8;
-        t.style.transform = `translate(${(dx * drift * 34).toFixed(1)}vw, ${(dy * drift * 30 + float).toFixed(1)}vh) rotate(${(dx * drift * 8).toFixed(1)}deg)`;
-        t.style.opacity = (1 - seg(p, 0.2, 0.42)).toFixed(3);
-      });
-      shade.style.opacity = seg(p, 0.42, 0.6).toFixed(3);
-      over.classList.toggle("is-on", p > 0.55);
-    };
+  // Same-day: title writes itself, then the frame opens like paper and the tear plays from the start
+  const sdTitle = document.querySelector("[data-sdtitle]");
+  const sdFrame = document.querySelector("[data-sdframe]");
+  if (sdTitle && sdFrame) {
+    const v = sdFrame.querySelector("video");
+    let opened = false;
+    new IntersectionObserver((es, o) => es.forEach((e) => {
+      if (e.isIntersecting) { v.preload = "auto"; v.load(); o.disconnect(); }
+    }), { rootMargin: "600px 0px" }).observe(sdFrame);
+    new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) sdTitle.classList.add("is-in");
+    }), { threshold: 0.5 }).observe(sdTitle);
+    new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) {
+        if (!opened) {
+          opened = true;
+          sdFrame.classList.add("is-open");
+          try { v.currentTime = 0; } catch (_) {}
+          setTimeout(() => v.play().catch(() => {}), reduceMotion ? 0 : 500);
+          // after the first full play, loop quietly
+          v.addEventListener("ended", () => { v.loop = true; v.play().catch(() => {}); }, { once: true });
+        } else v.play().catch(() => {});
+      } else if (opened) v.pause();
+    }), { threshold: 0.45 }).observe(sdFrame);
   }
+  const renderSd = () => {};
 
   // Basket flies in from the right while the card scrolls into place
   const basket = document.querySelector(".feat__cut");
