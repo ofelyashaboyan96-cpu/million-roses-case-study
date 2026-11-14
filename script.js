@@ -20,6 +20,23 @@ const LINKS = {
   document.getElementById("year").textContent = new Date().getFullYear();
   requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
+  // Same-day video: phone-shaped file on small screens, wide file on desktop
+  document.querySelectorAll("video[data-src-d]").forEach((v) => {
+    const m = window.innerWidth < 750;
+    v.poster = m ? v.dataset.posterM : v.dataset.posterD;
+    v.src = m ? v.dataset.srcM : v.dataset.srcD;
+  });
+  // Letter-by-letter titles
+  document.querySelectorAll("[data-letters]").forEach((el) => {
+    const txt = el.textContent; el.setAttribute("aria-label", txt); el.textContent = "";
+    [...txt].forEach((ch, i) => {
+      const s = document.createElement("span");
+      s.className = "sd__l"; s.setAttribute("aria-hidden", "true");
+      s.textContent = ch === " " ? "\u00a0" : ch; s.style.setProperty("--i", i);
+      el.append(s);
+    });
+  });
+
   // Fade-up on scroll
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -227,6 +244,59 @@ const LINKS = {
     desk.addEventListener("change", renderStory);
   }
 
+  // Same-day story: card grows to full screen, thumbnails drift away, title writes itself
+  const sd = document.querySelector("[data-sdstory]");
+  let renderSd = () => {};
+  if (sd) {
+    const track = sd.querySelector(".sd__track");
+    const media = sd.querySelector(".sd__media");
+    const shade = sd.querySelector(".sd__shade");
+    const intro = sd.querySelector(".sd__intro");
+    const over = sd.querySelector(".sd__over");
+    const thumbs = [...sd.querySelectorAll(".sd__thumb")];
+    const dirs = [[-1, -0.6], [1, -0.8], [-1, 0.7], [1, 0.6]];
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const seg = (p, a, b) => clamp((p - a) / (b - a));
+    if (reduceMotion) { sd.classList.add("is-static"); over.classList.add("is-on"); }
+    renderSd = () => {
+      if (reduceMotion) return;
+      const vh = window.innerHeight;
+      const r = track.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 1.5) return;
+      const p = clamp(-r.top / (r.height - vh));
+      const m = window.innerWidth < 750;
+      const s0 = m ? [38, 22, 24, 22] : [34, 31, 18, 31];
+      const e = ease(seg(p, 0.04, 0.5));
+      const ins = s0.map((v) => (v * (1 - e)).toFixed(2) + "%").join(" ");
+      media.style.clipPath = `inset(${ins} round ${(8 * (1 - e)).toFixed(1)}px)`;
+      intro.style.opacity = 1 - seg(p, 0.04, 0.2);
+      intro.style.transform = `translateY(${(-40 * seg(p, 0.04, 0.24)).toFixed(1)}px)`;
+      const drift = ease(seg(p, 0.06, 0.42));
+      thumbs.forEach((t, i) => {
+        const [dx, dy] = dirs[i];
+        const float = Math.sin(p * 6 + i) * 8;
+        t.style.transform = `translate(${(dx * drift * 34).toFixed(1)}vw, ${(dy * drift * 30 + float).toFixed(1)}vh) rotate(${(dx * drift * 8).toFixed(1)}deg)`;
+        t.style.opacity = (1 - seg(p, 0.2, 0.42)).toFixed(3);
+      });
+      shade.style.opacity = seg(p, 0.42, 0.6).toFixed(3);
+      over.classList.toggle("is-on", p > 0.55);
+    };
+  }
+
+  // Basket flies in from the right while the card scrolls into place
+  const basket = document.querySelector(".feat__cut");
+  const basketCard = document.querySelector(".feat__card");
+  const renderBasket = () => {
+    if (!basket || reduceMotion) return;
+    const vh = window.innerHeight;
+    const r = basketCard.getBoundingClientRect();
+    const t = clamp((vh * 1.3 - r.bottom) / (vh * 0.55));
+    const e = 1 - Math.pow(1 - t, 3);
+    basket.style.translate = `${(38 * (1 - e)).toFixed(2)}vw ${(10 * (1 - e)).toFixed(2)}vh`;
+    basket.style.rotate = `${(18 * (1 - e)).toFixed(2)}deg`;
+    basket.style.opacity = clamp(t * 1.6).toFixed(3);
+  };
+
   // Top bar turns solid after the hero
   const bar = document.querySelector(".topbar");
 
@@ -276,6 +346,8 @@ const LINKS = {
       }
     }
     renderStory();
+    renderSd();
+    renderBasket();
     ticking = false;
   };
   window.addEventListener("scroll", () => {
