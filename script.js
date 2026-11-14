@@ -30,6 +30,37 @@ const LINKS = {
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
   document.querySelectorAll(".reveal, .rise").forEach((el) => revealObs.observe(el));
 
+  // Fly-in headings: split into words, each starts at a scattered, blurred spot
+  document.querySelectorAll(".fly").forEach((el) => {
+    let i = 0;
+    const walk = (node) => {
+      [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const parts = n.textContent.split(/(\s+)/);
+          const frag = document.createDocumentFragment();
+          parts.forEach((t) => {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.append(t); return; }
+            const s = document.createElement("span");
+            s.className = "fw"; s.textContent = t;
+            const ang = Math.random() * Math.PI * 2, dist = 60 + Math.random() * 90;
+            s.style.setProperty("--dx", `${(Math.cos(ang) * dist).toFixed(0)}px`);
+            s.style.setProperty("--dy", `${(Math.sin(ang) * dist * 0.6).toFixed(0)}px`);
+            s.style.setProperty("--i", i++);
+            frag.append(s);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
+      });
+    };
+    if (!el.hasAttribute("aria-label")) el.setAttribute("aria-label", el.textContent.trim());
+    walk(el);
+    revealObs.observe(el);
+  });
+  // The featured card also triggers the basket's rise
+  const featCard = document.querySelector(".feat__card");
+  if (featCard) revealObs.observe(featCard);
+
   // Live same-day countdown: orders until 16:00 Yerevan time (UTC+4)
   const clockEl = document.querySelector("[data-timer]");
   const noteEl = document.querySelector("[data-timer-note]");
@@ -206,6 +237,7 @@ const LINKS = {
   const strip = document.querySelector("[data-drift]");
   const laptop = document.querySelector("[data-tilt]");
   const drifters = document.querySelectorAll("[data-parallax]");
+  const growers = document.querySelectorAll("[data-grow]");
   let ticking = false;
 
   const update = () => {
@@ -222,6 +254,12 @@ const LINKS = {
         if (bouquet) bouquet.style.translate = `0 ${(y * -0.08).toFixed(1)}px`;
         if (stem) stem.style.translate = `0 ${(y * 0.22).toFixed(1)}px`;
       }
+      growers.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        const t = clamp((vh - r.top) / (vh * 0.7));
+        el.style.transform = `scale(${(0.86 + 0.14 * (1 - Math.pow(1 - t, 3))).toFixed(4)})`;
+      });
       drifters.forEach((el) => {
         const r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > vh + 200) return;

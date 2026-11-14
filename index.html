@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=19">
+  <link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
@@ -67,21 +67,23 @@
       </ul>
     </section>
 
-    <!-- 4. SAME-DAY · bold green band with a live countdown -->
+    <!-- 4. SAME-DAY · the store's tear-open video, live countdown in a green card -->
     <section class="sameday" id="sameday">
       <div class="wrap sameday__grid">
         <div class="sameday__text">
-          <p class="eyebrow eyebrow--light reveal">Same-day delivery · Conversion</p>
-          <h2 class="sameday__title reveal">Order by 16:00,<br><em>delivered today.</em></h2>
-          <p class="reveal">The first question of every gift buyer is “will it arrive today?”. A live countdown in Yerevan time answers it on the home page and in every buy box.</p>
+          <p class="eyebrow reveal">Same-day delivery · Conversion</p>
+          <h2 class="sameday__title fly">Order by 16:00, <em>delivered today.</em></h2>
+          <p class="reveal">The first question of every gift buyer is &ldquo;will it arrive today?&rdquo;. The home banner answers it with a paper-tearing video and a live countdown in Yerevan time.</p>
+          <div class="clock reveal" aria-live="off">
+            <span class="clock__label mono">Live · Yerevan time</span>
+            <b class="clock__time" data-timer>00:00:00</b>
+            <span class="clock__note" data-timer-note>left to order for delivery today</span>
+          </div>
         </div>
-        <div class="clock reveal" aria-live="off">
-          <span class="mono clock__label">Live · Yerevan time</span>
-          <b class="clock__time" data-timer>00:00:00</b>
-          <span class="clock__note" data-timer-note>left to order for delivery today</span>
-        </div>
-        <figure class="sameday__shot rise"><img src="assets/sec-same-day.jpg" alt="The same-day delivery banner on the home page" loading="lazy"></figure>
-        <div class="phone sameday__phone" data-parallax="-0.12"><img src="assets/mob-sameday.jpg" alt="The same-day banner on a phone" loading="lazy"></div>
+        <figure class="sameday__video" data-grow>
+          <video src="assets/same-day.mp4" poster="assets/same-day-poster.jpg" muted loop playsinline preload="none" aria-label="Kraft paper tears open to reveal a bouquet"></video>
+          <figcaption class="mono">Home page banner · real store video</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -126,7 +128,7 @@
             </div>
           </div>
           <p class="feat__note">Every product page tells the story the same way: one bold sentence, then What&rsquo;s inside, Size and Care, in Armenian, Russian and English.</p>
-          <h3 class="feat__title">Blooming Love</h3>
+          <h3 class="feat__title fly">Blooming Love</h3>
         </div>
         <div class="feat__photo">
           <div class="feat__frame"><img src="assets/bl-3.jpg" alt="Blooming Love flowers in soft daylight" loading="lazy"></div>
@@ -136,10 +138,10 @@
       </div>
     </section>
 
-    <!-- 6. MOBILE · blush band, drifting phones -->
+    <!-- 6. MOBILE · sage band, drifting phones -->
     <section class="mobile" id="mobile">
       <div class="wrap mobile__head">
-        <h2 class="mobile__title reveal">Most flowers are ordered <em>on a phone.</em></h2>
+        <h2 class="mobile__title fly">Most flowers are ordered <em>on a phone.</em></h2>
         <p class="mono reveal">Every section is checked at 390px first,<br>then scaled up to desktop.</p>
       </div>
       <div class="mobiles" data-drift>
@@ -157,7 +159,7 @@
       <div class="wrap langs__grid">
         <div class="langs__text">
           <p class="eyebrow reveal">Built for Armenia</p>
-          <h2 class="h2 reveal">Speaks the customer's <em>language.</em></h2>
+          <h2 class="h2 fly">Speaks the customer's <em>language.</em></h2>
           <div class="tabs reveal" role="tablist" aria-label="Store language">
             <button role="tab" aria-selected="true" data-lang="hy">Հայերեն</button>
             <button role="tab" aria-selected="false" data-lang="ru">Русский</button>
@@ -185,7 +187,7 @@
     <section class="design" id="design">
       <div class="wrap">
         <p class="eyebrow reveal">Design system</p>
-        <h2 class="h2 reveal">Four colours, <em>one mood.</em></h2>
+        <h2 class="h2 fly">Four colours, <em>one mood.</em></h2>
       </div>
       <div class="swatches wrap">
         <div class="sw reveal" style="--c:#1F3A2B;--t:#F6F2E9"><b>Deep green</b><span class="mono">#1F3A2B</span><small>actions</small></div>
@@ -201,7 +203,7 @@
     <section class="cta" id="contact">
       <div class="wrap">
         <p class="eyebrow eyebrow--light reveal">Let's work together</p>
-        <h2 class="cta__title reveal">Need a Shopify store <em>that sells like this?</em></h2>
+        <h2 class="cta__title fly">Need a Shopify store <em>that sells like this?</em></h2>
         <div class="cta__actions reveal">
           <a class="btn btn--gold" data-link="store" href="#" target="_blank" rel="noopener">See Million Roses live</a>
           <a class="btn btn--ghost" data-link="upwork" href="#" target="_blank" rel="noopener">Hire me on Upwork</a>
@@ -217,6 +219,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=19"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>
