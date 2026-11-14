@@ -10,8 +10,8 @@
   <meta property="og:image" content="assets/fresh-home.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=18">
 </head>
 <body>
 
@@ -108,67 +108,27 @@
       </div>
     </section>
 
-    <!-- LOOKBOOK · luxury-brand editorial cards -->
-    <section class="look" aria-label="Million Roses lookbook">
-      <div class="look__wrap">
-
-        <figure class="lk-banner reveal">
-          <div class="lk-banner__img"><img src="assets/prod-anthurium.jpg" alt="Anthurium" loading="lazy"><img src="assets/prod-red-velvet-roses.jpg" alt="Red Velvet Roses" loading="lazy"><img src="assets/prod-bird-of-paradise.jpg" alt="Bird of Paradise" loading="lazy"></div>
-          <figcaption class="lk-banner__title"><span class="lk-line"></span>MILLION ROSES<span class="lk-line"></span><small>Shopify floral boutique · Yerevan</small></figcaption>
-        </figure>
-
-        <article class="lk-card lk-collection reveal">
-          <span class="lk-ghost lk-ghost--l" aria-hidden="true">MILLION ROSES</span>
-          <div class="lk-collection__row">
-            <img src="assets/prod-coral-dahlia.jpg" alt="Coral Dahlia bouquet" loading="lazy">
-            <img src="assets/prod-purple-allium-chrysanthemum-bouquet.jpg" alt="Purple Allium and Chrysanthemum bouquet" loading="lazy">
-            <img src="assets/prod-white-graden.jpg" alt="White Garden bouquet" loading="lazy">
-            <img src="assets/prod-red-velvet-roses.jpg" alt="Red Velvet Roses basket" loading="lazy">
-          </div>
-          <span class="lk-ghost lk-ghost--r" aria-hidden="true">MILLION ROSES</span>
-          <div class="lk-collection__text">
-            <h3 class="lk-h">Signature bouquets</h3>
-            <p>22 products photographed on one warm backdrop, so the shop reads like a collection. Every product page shows what's inside, size and care, with same-day delivery before 16:00.</p>
-          </div>
-        </article>
-
-        <article class="lk-card lk-split reveal">
-          <div class="lk-split__img"><img src="assets/fresh-collections.jpg" alt="Our collections section on the home page" loading="lazy"></div>
-          <div class="lk-split__text">
-            <span class="lk-ghost-word" aria-hidden="true">MR</span>
-            <h3 class="lk-h">Hand-tied in Yerevan</h3>
-            <p>A florist, not a warehouse. Baskets, bouquets and plants sit one tap apart on the home page, in Armenian, Russian and English, with prices in AMD and a 10% welcome offer for the first order.</p>
-          </div>
-        </article>
-
-        <article class="lk-card lk-arrival reveal" data-slider>
-          <h3 class="lk-h lk-arrival__title">New season</h3>
-          <div class="lk-arrival__body">
-            <div class="lk-arrival__band">
-              <div class="lk-slide is-on">
-                <img src="assets/prod-blooming-love.jpg" alt="Blooming Love basket" loading="lazy">
-                <img src="assets/prod-fly-with-me.jpg" alt="Fly With Me arrangement" loading="lazy">
-                <img src="assets/prod-coral-dahlia.jpg" alt="Coral Dahlia bouquet" loading="lazy">
-              </div>
-              <div class="lk-slide">
-                <img src="assets/prod-anthurium.jpg" alt="Anthurium plant" loading="lazy">
-                <img src="assets/prod-bird-of-paradise.jpg" alt="Bird of Paradise plant" loading="lazy">
-                <img src="assets/prod-white-graden.jpg" alt="White Garden bouquet" loading="lazy">
-              </div>
-              <div class="lk-slide">
-                <img src="assets/prod-purple-allium-chrysanthemum-bouquet.jpg" alt="Purple Allium bouquet" loading="lazy">
-                <img src="assets/prod-red-velvet-roses.jpg" alt="Red Velvet Roses basket" loading="lazy">
-                <img src="assets/prod-blooming-love.jpg" alt="Blooming Love basket" loading="lazy">
-              </div>
+    <!-- FEATURE · editorial product spread, 3D cut-out -->
+    <section class="feat" aria-label="Featured product: Blooming Love">
+      <div class="feat__card reveal">
+        <header class="feat__head"><span>Signature basket</span><nav aria-hidden="true"><span>Bouquets</span><span>Baskets</span><span>Plants</span></nav></header>
+        <div class="feat__left">
+          <div class="feat__top">
+            <img src="assets/bl-1.jpg" alt="Blooming Love basket in a gift wrap" loading="lazy">
+            <img src="assets/bl-2.jpg" alt="Close-up of pink dahlias and green accents" loading="lazy">
+            <div class="feat__copy">
+              <p>Pink dahlias, roses and snapdragons with bright green accents, hand-tied into a woven rope basket.</p>
+              <p>A gift that arrives ready to stand on a table, no vase needed.</p>
             </div>
-            <span class="lk-vertical" aria-hidden="true"><b>NEW</b><b>ARRIVAL</b></span>
           </div>
-          <div class="lk-arrival__foot">
-            <p>Bouquets, baskets and plants, each with a clear price and one green “Add to cart”.</p>
-            <div class="lk-dots" role="tablist" aria-label="Collection slides"><button aria-label="Slide 1" class="is-on"></button><button aria-label="Slide 2"></button><button aria-label="Slide 3"></button></div>
-          </div>
-        </article>
-
+          <p class="feat__note">Every product page tells the story the same way: one bold sentence, then What&rsquo;s inside, Size and Care, in Armenian, Russian and English.</p>
+          <h3 class="feat__title">Blooming Love</h3>
+        </div>
+        <div class="feat__photo">
+          <div class="feat__frame"><img src="assets/bl-3.jpg" alt="Blooming Love flowers in soft daylight" loading="lazy"></div>
+          <img class="feat__cut" src="assets/cut-blooming-love.webp" alt="Blooming Love basket" loading="lazy" data-parallax="-0.06">
+        </div>
+        <footer class="feat__foot"><span>Same-day delivery in Yerevan · order before 16:00</span><a href="https://ofelya-shaboyan-szkc1aey.myshopify.com/products/blooming-love" target="_blank" rel="noopener">Shop Blooming Love &rarr;</a></footer>
       </div>
     </section>
 
@@ -253,6 +213,6 @@
     <span>Designed &amp; built by hand · HTML, CSS, JS</span>
   </footer>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>

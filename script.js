@@ -97,21 +97,6 @@ const LINKS = {
     el.addEventListener("mouseleave", () => on(false));
   });
 
-  // Lookbook slider: auto-advance, dots switch slides
-  const slider = document.querySelector("[data-slider]");
-  if (slider) {
-    const slides = [...slider.querySelectorAll(".lk-slide")];
-    const dots = [...slider.querySelectorAll(".lk-dots button")];
-    let cur = 0, auto = null;
-    const go = (n) => {
-      cur = n;
-      slides.forEach((s, i) => s.classList.toggle("is-on", i === n));
-      dots.forEach((d, i) => { d.classList.toggle("is-on", i === n); d.setAttribute("aria-selected", i === n); });
-    };
-    dots.forEach((d, i) => d.addEventListener("click", () => { clearInterval(auto); go(i); }));
-    if (!reduceMotion) auto = setInterval(() => go((cur + 1) % slides.length), 3500);
-  }
-
   // Top bar turns solid after the hero
   const bar = document.querySelector(".topbar");
 
