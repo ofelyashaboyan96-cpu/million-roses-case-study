@@ -1,0 +1,68 @@
+/* Million Roses portfolio v2: a basket gathers its flowers as the page scrolls down */
+:root {
+  --green: #1F3A2B;
+  --cream: #F6F2E9;
+  --gold: #B8975A;
+  --gold-deep: #8C6D37;
+  --champagne: #E2C68F;
+  --ink: #2F2A26;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Jost", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+/* Top bar */
+.bar { position: fixed; z-index: 10; inset: 0 0 auto 0; display: flex; justify-content: space-between; align-items: center; padding: 22px clamp(16px, 5vw, 64px); pointer-events: none; }
+.bar__logo { font-family: var(--serif); font-size: 24px; color: var(--green); transition: color .6s; }
+.bar__logo i { color: var(--gold-deep); }
+.bar__scroll { font-size: 11px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-deep); transition: opacity .5s; }
+body.is-scrolled .bar__scroll { opacity: 0; }
+body.is-dark .bar__logo { color: var(--cream); }
+body.is-dark .bar__logo i { color: var(--champagne); }
+
+/* Sections: each one fills the screen with its own colour */
+.gather { position: relative; }
+.step { position: relative; height: 100vh; height: 100svh; display: flex; align-items: center; padding: 0 clamp(16px, 8vw, 120px); overflow: hidden; }
+.step--1 { background: radial-gradient(90% 80% at 70% 55%, #FBF8F1 0%, #F1EADD 75%); }
+.step--2 { background: #F3E5E2; }
+.step--3 { background: #E3E8DA; }
+.step--4 { background: #EFE4CF; }
+.step--5 { background: radial-gradient(90% 90% at 70% 55%, #2A4A37 0%, #1F3A2B 60%, #183020 100%); color: var(--cream); }
+.step__txt { position: relative; z-index: 3; width: min(42%, 520px); }
+.step small { display: block; margin-bottom: 18px; font-size: 12px; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--gold-deep); }
+.step h1, .step h2 { margin: 0 0 20px; font-family: var(--serif); font-weight: 400; font-size: clamp(54px, 7.4vw, 118px); line-height: .94; color: var(--green); }
+.step em { color: var(--gold-deep); }
+.step p { margin: 0; max-width: 380px; font-size: 18px; line-height: 1.6; }
+.step--5 small, .step--5 em { color: var(--champagne); }
+.step--5 h2 { color: var(--cream); }
+.step__txt { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform 1s cubic-bezier(.2, .7, .2, 1); }
+.step.is-in .step__txt { opacity: 1; transform: none; }
+
+/* The basket stays on screen while the page moves underneath it */
+.basket { position: sticky; top: 0; z-index: 2; height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh;
+  display: flex; align-items: center; justify-content: flex-end; padding-right: clamp(16px, 7vw, 110px); pointer-events: none; }
+.basket__frame { position: relative; height: min(80svh, 48vw); aspect-ratio: 809 / 819; }
+.basket__frame::after { content: ""; position: absolute; left: 24%; right: 24%; bottom: 0; height: 7%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, .28), transparent); z-index: -1; }
+.layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; will-change: opacity, transform; }
+.layer + .layer { opacity: 0; }
+
+/* Phone: words at the top, basket underneath */
+@media (max-width: 760px) {
+  .step { align-items: flex-start; padding-top: 92px; }
+  .step__txt { width: 100%; }
+  .step h1, .step h2 { font-size: clamp(44px, 12vw, 64px); margin-bottom: 12px; }
+  .step small { margin-bottom: 12px; font-size: 11px; }
+  .step p { font-size: 16px; }
+  .basket { align-items: flex-end; justify-content: center; padding: 0 0 4svh; }
+  .basket__frame { height: auto; width: min(88vw, 52svh); }
+  .bar { padding: 18px 16px; }
+  .bar__logo { font-size: 21px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .step__txt { transition: none; opacity: 1; transform: none; }
+}
