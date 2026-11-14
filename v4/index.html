@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Million Roses · Portfolio</title>
+  <meta name="description" content="One flower at a time, a bouquet gathers as you scroll. Portfolio by Ofelya Shaboyan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <header class="bar">
+    <span class="bar__logo">Million <i>Roses</i></span>
+    <span class="bar__by">Ofelya Shaboyan · Web design</span>
+  </header>
+
+  <div class="stage" aria-hidden="true">
+    <div class="bouquet">
+      <!-- order = order of arrival; data-x = where the stem ends inside the image (0..1) -->
+      <div class="fl" data-src="assets/calla.webp"     data-x="0.108" data-h="56" data-r="-17" data-z="2"></div>
+      <div class="fl" data-src="assets/anthurium.webp" data-x="0.637" data-h="50" data-r="6"   data-z="1"></div>
+      <div class="fl" data-src="assets/poppy.webp"     data-x="0.739" data-h="68" data-r="13"  data-z="3"></div>
+      <div class="fl" data-src="assets/orchid.webp"    data-x="0.699" data-h="38" data-r="-9"  data-z="4"></div>
+      <div class="ribbon"></div>
+    </div>
+  </div>
+
+  <main class="captions">
+    <section class="cap" data-step="0">
+      <small>A bouquet, one stem at a time</small>
+      <h1>Million<br><em>Roses</em></h1>
+      <p>Scroll slowly.</p>
+    </section>
+    <section class="cap" data-step="1">
+      <small>01 · Calla lily</small>
+      <h2>It starts with<br><em>one stem.</em></h2>
+    </section>
+    <section class="cap" data-step="2">
+      <small>02 · Anthurium</small>
+      <h2>Then fresh<br><em>green leaves.</em></h2>
+    </section>
+    <section class="cap" data-step="3">
+      <small>03 · Poppy bud</small>
+      <h2>A little<br><em>height.</em></h2>
+    </section>
+    <section class="cap" data-step="4">
+      <small>04 · Orchid</small>
+      <h2>And something<br><em>soft in front.</em></h2>
+    </section>
+    <section class="cap cap--end" data-step="5">
+      <small>Tied by hand</small>
+      <h2>One<br><em>bouquet.</em></h2>
+      <p>Million Roses, a floral boutique on Shopify. Designed and built by Ofelya Shaboyan.</p>
+      <a class="btn" href="../">See the case study</a>
+    </section>
+  </main>
+
+  <nav class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></nav>
+  <div class="track"></div>
+
+  <script src="script.js?v=1"></script>
+</body>
+</html>
