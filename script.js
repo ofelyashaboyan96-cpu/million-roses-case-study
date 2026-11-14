@@ -74,6 +74,7 @@ const LINKS = {
     walk(el);
     revealObs.observe(el);
   });
+  document.querySelectorAll("[data-arc], [data-collage]").forEach((el) => revealObs.observe(el));
   // The featured card also triggers the basket's rise
   const featCard = document.querySelector(".feat__card");
   if (featCard) revealObs.observe(featCard);
