@@ -97,6 +97,105 @@ const LINKS = {
     el.addEventListener("mouseleave", () => on(false));
   });
 
+  // Product story: words fly in, page zooms up, then 4 trust points are mapped one by one
+  const ps = document.querySelector("[data-pstory]");
+  let renderStory = () => {};
+  if (ps) {
+    const track = ps.querySelector(".pstory__track");
+    const stage = ps.querySelector(".pstory__stage");
+    const words = [...ps.querySelectorAll(".pw")];
+    const eyebrow = ps.querySelector(".pstory__eyebrow");
+    const shot = ps.querySelector(".pstory__shot");
+    const pins = [...shot.querySelectorAll(".pin")];
+    const calls = [...ps.querySelectorAll(".pcall")];
+    const paths = [...ps.querySelectorAll(".pstory__lines path")];
+    const dots = [...ps.querySelectorAll(".pstory__lines circle")];
+    const countEl = ps.querySelector("[data-pcount]");
+    const barEl = ps.querySelector("[data-pbar]");
+    const list = ps.querySelector(".pstory__calls");
+    const desk = window.matchMedia("(min-width: 900px)");
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const seg = (p, a, b) => clamp((p - a) / (b - a));
+    const clear = () => [...words, eyebrow, shot, ...pins, ...calls, ...paths, ...dots].forEach((el) => el.removeAttribute("style"));
+    const keepVars = () => { // the words' scatter offsets live in inline style vars
+      words.forEach((w, i) => { w.style.setProperty("--dx", w.dataset.dx); w.style.setProperty("--dy", w.dataset.dy); });
+      pins.forEach((p) => { p.style.setProperty("--x", p.dataset.x); p.style.setProperty("--y", p.dataset.y); });
+    };
+    words.forEach((w) => { w.dataset.dx = w.style.getPropertyValue("--dx"); w.dataset.dy = w.style.getPropertyValue("--dy"); });
+    pins.forEach((p) => { p.dataset.x = p.style.getPropertyValue("--x"); p.dataset.y = p.style.getPropertyValue("--y"); });
+
+    if (reduceMotion) ps.classList.add("is-static");
+
+    // small screens: reveal words and cards, draw the timeline line on scroll
+    const mObs = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting || desk.matches) return;
+      e.target.classList.add("is-in");
+    }), { threshold: 0.3 });
+    mObs.observe(ps.querySelector(".pstory__head"));
+    calls.forEach((c) => mObs.observe(c));
+    const headObs = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) ps.classList.add("is-in"); }), { threshold: 0.4 });
+    headObs.observe(ps.querySelector(".pstory__head"));
+
+    let wasDesk = null;
+    renderStory = () => {
+      const vh = window.innerHeight;
+      if (!desk.matches || reduceMotion) {
+        if (wasDesk !== false) { clear(); keepVars(); wasDesk = false; }
+        if (reduceMotion) return;
+        const r = list.getBoundingClientRect();
+        list.style.setProperty("--line", clamp((vh * 0.75 - r.top) / r.height).toFixed(3));
+        return;
+      }
+      wasDesk = true;
+      const r = track.getBoundingClientRect();
+      const p = clamp(-r.top / (r.height - vh));
+
+      // 1. words fly in from scattered spots, blurred, like a camera finding focus
+      words.forEach((w, i) => {
+        const t = ease(seg(p, 0.02 + i * 0.025, 0.14 + i * 0.025));
+        w.style.opacity = t;
+        w.style.filter = `blur(${(14 * (1 - t)).toFixed(1)}px)`;
+        w.style.transform = `translate(calc(${w.dataset.dx} * ${(1 - t).toFixed(3)}), calc(${w.dataset.dy} * ${(1 - t).toFixed(3)})) scale(${(1 + 0.4 * (1 - t)).toFixed(3)})`;
+      });
+      eyebrow.style.opacity = seg(p, 0.12, 0.2);
+
+      // 2. the product page grows from a small card to full size
+      const z = ease(seg(p, 0.14, 0.34));
+      shot.style.opacity = clamp(z * 3);
+      shot.style.transform = `translate(-50%, -50%) scale(${(0.42 + 0.58 * z).toFixed(4)})`;
+
+      // 3. four steps: pin pops, line draws to its card, card slides in
+      const sr = stage.getBoundingClientRect();
+      let active = 0;
+      calls.forEach((c, i) => {
+        const a = 0.38 + i * 0.14;
+        const pinT = ease(seg(p, a, a + 0.03));
+        const lineT = seg(p, a + 0.02, a + 0.08);
+        const cardT = ease(seg(p, a + 0.06, a + 0.11));
+        if (pinT > 0) active = i + 1;
+        pins[i].style.transform = `scale(${pinT.toFixed(3)})`;
+        pins[i].classList.toggle("is-on", pinT >= 1);
+        const side = i === 0 ? -1 : 1;
+        c.style.opacity = cardT;
+        c.style.transform = `translateX(${(side * 30 * (1 - cardT)).toFixed(1)}px)`;
+        const pr = pins[i].getBoundingClientRect();
+        const cr = c.getBoundingClientRect();
+        const ax = pr.left + pr.width / 2 - sr.left, ay = pr.top + pr.height / 2 - sr.top;
+        const bx = (side < 0 ? cr.right + 10 : cr.left - 10) - sr.left;
+        const by = cr.top + 34 - sr.top;
+        const mx = side < 0 ? bx + 28 : bx - 28;
+        paths[i].setAttribute("d", `M${ax.toFixed(1)} ${ay.toFixed(1)} L${mx.toFixed(1)} ${by.toFixed(1)} L${bx.toFixed(1)} ${by.toFixed(1)}`);
+        paths[i].style.strokeDashoffset = (1 - lineT).toFixed(3);
+        dots[i].setAttribute("cx", bx.toFixed(1));
+        dots[i].setAttribute("cy", by.toFixed(1));
+        dots[i].style.opacity = lineT >= 1 ? 1 : 0;
+      });
+      countEl.textContent = "0" + active;
+      barEl.style.transform = `scaleX(${seg(p, 0.38, 0.92).toFixed(3)})`;
+    };
+    desk.addEventListener("change", renderStory);
+  }
+
   // Top bar turns solid after the hero
   const bar = document.querySelector(".topbar");
 
@@ -138,6 +237,7 @@ const LINKS = {
         }
       }
     }
+    renderStory();
     ticking = false;
   };
   window.addEventListener("scroll", () => {
