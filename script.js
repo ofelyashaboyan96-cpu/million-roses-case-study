@@ -296,7 +296,7 @@ const LINKS = {
   };
 
   // Story: picture blooms open, small photos and the badge arrive from different sides
-  document.querySelectorAll("[data-story], [data-story-title]").forEach((el) => revealObs.observe(el));
+  document.querySelectorAll("[data-story], [data-story-title], [data-about]").forEach((el) => revealObs.observe(el));
 
   // Gold stems draw themselves as their section scrolls in
   const stems = [...document.querySelectorAll("[data-draw]")].map((svg) => ({ svg, paths: [...svg.querySelectorAll("path")] }));
