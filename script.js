@@ -212,15 +212,15 @@ const LINKS = {
 
       // 1. words fly in from scattered spots, blurred, like a camera finding focus
       words.forEach((w, i) => {
-        const t = ease(seg(p, 0.02 + i * 0.025, 0.14 + i * 0.025));
+        const t = ease(seg(p, i * 0.012, 0.07 + i * 0.012));
         w.style.opacity = t;
         w.style.filter = `blur(${(14 * (1 - t)).toFixed(1)}px)`;
         w.style.transform = `translate(calc(${w.dataset.dx} * ${(1 - t).toFixed(3)}), calc(${w.dataset.dy} * ${(1 - t).toFixed(3)})) scale(${(1 + 0.4 * (1 - t)).toFixed(3)})`;
       });
-      eyebrow.style.opacity = seg(p, 0.12, 0.2);
+      eyebrow.style.opacity = seg(p, 0.05, 0.11);
 
       // 2. the product page grows from a small card to full size
-      const z = ease(seg(p, 0.14, 0.34));
+      const z = ease(seg(p, 0.08, 0.3));
       shot.style.opacity = clamp(z * 3);
       shot.style.transform = `translate(-50%, -50%) scale(${(0.42 + 0.58 * z).toFixed(4)})`;
 
